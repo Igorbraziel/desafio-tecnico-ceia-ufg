@@ -1,7 +1,8 @@
 import argparse
 import sys
 from pathlib import Path
-from src.utils.file_utils import FileManager
+
+from src.extractor.json_extractor import JsonReader
 from pprint import pprint
 
 def main():
@@ -17,7 +18,7 @@ def main():
         
     print(f"Iniciando processamento em: {data_path}")
 
-    info_list = FileManager.extract_info(data_path)
+    info_list = JsonReader.extract_downloads_info(data_path)
 
     dir_path = info_list[0]["dir_path"] if info_list else None
         

@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class JsonReader:
     @staticmethod
-    def extract_folder_info(downloads_dir: Path) -> List[Dict[str, Any]]:
+    def extract_downloads_info(downloads_dir: Path) -> List[Dict[str, Any]]:
         info_list = []
         for file_path in downloads_dir.glob("*.json"):
             try:
