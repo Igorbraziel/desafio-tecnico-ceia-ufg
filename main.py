@@ -19,7 +19,8 @@ def main():
 
     info_list = FileManager.extract_info(data_path)
 
-
+    dir_path = info_list[0]["dir_path"] if info_list else None
+        
     
 if __name__ == "__main__":
     main()
