@@ -2,22 +2,53 @@ import logging
 import sys
 from pathlib import Path
 
-class LogService:
-    """Serviço de logging para o projeto"""
-    def __init__(self, name: str, level=logging.INFO):
-        self.logger = logging.getLogger(name)
-        self.logger.setLevel(level)
+class ColoredFormatter(logging.Formatter):
+    """Formatação de log colorida para melhorar a legibilidade no console."""
+    COLOR_CODES = {
+        logging.DEBUG: "\033[36m",  # Cyan
+        logging.INFO: "\033[0m",   # Default
+        logging.WARNING: "\033[33m",# Yellow
+        logging.ERROR: "\033[31m",  # Red
+    }
+    RESET_CODE = "\033[0m"
 
-    def info(self, message: str):
-        """Utilizado para monstrar informações gerais sobre o andamento do processo."""
-        self.logger.info(message)
+    def format(self, record):
+        color_code = self.COLOR_CODES.get(record.levelno, self.RESET_CODE)
+        formatted_message = super().format(record)
+        return f"{color_code}{formatted_message}{self.RESET_CODE}"
 
-    def warning(self, message: str):
-        """Utilizado para mostrar avisos sobre situações não padrão."""
-        self.logger.warning(message)
+class LoggingService:
+    @staticmethod
+    def setup_logging(name: str = "licitacoes", log_file: str = "results/processing.log") -> logging.Logger:
+        """
+        Configura o logging centralizado para o projeto.
+        Loga tanto no console (INFO) quanto em um arquivo (DEBUG).
+        """
+        Path(log_file).parent.mkdir(parents=True, exist_ok=True)
 
-    def error(self, message: str, exc_info: bool = False):
-        """Utilizado para mostrar erros graves que impedem o sistema de funcionar corretamente."""
-        self.logger.error(message, exc_info=exc_info)
+        logger = logging.getLogger(name)
+        logger.setLevel(logging.DEBUG)
 
-logging_service = LogService(name="Logger", level=logging.INFO)
+        if logger.handlers:
+            return logger
+
+        formatter = ColoredFormatter(
+            "%(levelname)s | %(name)s | %(message)s"
+        )
+
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler.setLevel(logging.INFO)
+        console_handler.setFormatter(formatter)
+        logger.addHandler(console_handler)
+
+        file_handler = logging.FileHandler(log_file, encoding="utf-8")
+        file_handler.setLevel(logging.DEBUG)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+
+        return logger
+
+    @staticmethod
+    def get_logger(name: str) -> logging.Logger:
+        """Retorna um logger para o módulo específico."""
+        return logging.getLogger(f"licitacoes.{name}")
