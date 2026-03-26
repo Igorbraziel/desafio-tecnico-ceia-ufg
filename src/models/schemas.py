@@ -1,14 +1,14 @@
-# models/schemas.py
-
 from dataclasses import dataclass, field
-from typing import Optional
-
+from typing import Optional, List
+from pathlib import Path
 
 @dataclass
 class Anexo:
     nome: str
     formato: str
-
+    url: str
+    caminho: str
+    hash_content: str
 
 @dataclass
 class LicitacaoInput:
@@ -19,10 +19,9 @@ class LicitacaoInput:
     orgao:         str
     cidade:        str
     estado:        str
-    itens_raw:     list[str]   # campo data.itens — texto semi-estruturado
-    anexos:        list[Anexo]
-    pasta_anexos:  str         # caminho da pasta de anexos
-
+    itens:         List[str]
+    anexos:        List[Anexo]
+    pasta_anexos:  Path
 
 @dataclass
 class Item:
@@ -41,8 +40,8 @@ class LicitacaoOutput:
     orgao:              str
     cidade:             str
     estado:             str
-    anexos_processados: list[str]
-    itens_extraidos:    list[Item]
+    anexos_processados: List[str]
+    itens_extraidos:    List[Item]
 
     def to_dict(self) -> dict:
         return {
