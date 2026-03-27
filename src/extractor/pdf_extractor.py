@@ -21,7 +21,8 @@ class PdfExtractor:
             return ""
 
         logger.info(f"Começando extração de arquivo PDF: {pdf_path}")
-        text = ""
+        
+        is_pdf_broken = False
 
         try:
             with pdfplumber.open(pdf_path) as pdf:
@@ -32,7 +33,8 @@ class PdfExtractor:
                     return text
 
         except Exception as e:
-            logger.warning(f"Erro ao extrair texto do PDF (pdfplumber) '{pdf_path}': {e}")
+            logger.warning(f"Erro ao ler PDF (pdfplumber) '{pdf_path}': {e}")
+            is_pdf_broken = True
 
         # Fallback para PyMuPDF se pdfplumber não extrair texto
         try:
@@ -46,14 +48,19 @@ class PdfExtractor:
 
         except fitz.FileDataError as e:
             logger.error(f"Arquivo não é um PDF válido ou está totalmente corrompido '{pdf_path.name}': {e}")
+            return ""
 
         except Exception as e:
             logger.error(f"Falha total ao extrair '{pdf_path.name}' após 2 tentativas: {e}")
+            return ""
+
+        if is_pdf_broken:
+            logger.warning(f"PDF '{pdf_path.name}' pode estar corrompido ou protegido, abortando tentativa de OCR.")
+            return ""
 
         # Fallback para OCR se o PyMuPDF não extrair texto
         try:
             images = convert_from_path(pdf_path)
-
             ocr_text = []
 
             for image in images:
@@ -70,3 +77,4 @@ class PdfExtractor:
 
         except Exception as e:
             logger.warning(f"Erro ao extrair texto de PDF utilizando OCR: {e}")
+            return ""

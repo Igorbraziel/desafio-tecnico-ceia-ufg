@@ -12,7 +12,6 @@ from src.extractor.zip_extractor import ZipExtractor
 from src.extractor.doc_extractor import DocExtractor
 from src.extractor.odt_extractor import OdtExtractor
 
-
 logger = LoggingService.get_logger("extractor.attachment")
 
 class AttachmentReader:
@@ -35,36 +34,57 @@ class AttachmentReader:
             full_text = ""
 
         for file_path in folder_path.iterdir():
+            if file_path.is_dir():
+                continue
+                
+            if not FileManager.verify_file_exists(file_path):
+                logger.warning(f"Arquivo de anexo não encontrado: {file_path.name}")
+                continue
+
             file_ext = FileManager.get_file_extension(file_path)
-            if file_ext in Config.SUPPORTED_FILE_TYPES:
-                match file_ext:
-                    case ".pdf":
-                        text = PdfExtractor.extract_text_from_pdf(file_path)
-                        full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
-                        processed_files.append(file_path.name)
-                    case ".docx":
-                        text = DocxExtractor.extract_text_from_docx(file_path)
-                        full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
-                        processed_files.append(file_path.name)
-                    case ".doc":
-                        text = DocExtractor.extract_text_from_doc(file_path)
-                        full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
-                        processed_files.append(file_path.name)
-                    case ".odt":
-                        text = OdtExtractor.extract_text_from_odt(file_path)
-                        full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
-                        processed_files.append(file_path.name)
-                    case ".xls" | ".xlsx" | ".ods":
-                        text = SpreadsheetExtractor.extract_text_from_spreadsheet(file_path, file_extension=file_ext)
-                        full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
-                        processed_files.append(file_path.name)
-                    case ".zip":
-                        file_name = FileManager.get_file_name(file_path)
-                        extract_folder = folder_path / file_name
-                        ZipExtractor.extract_zip_file(file_path, extract_folder)
-                        full_text, processed_files = AttachmentReader.read_attachment(extract_folder, processed_files, full_text)
-            else:
-                logger.warning(f"Tipo de arquivo não suportado ({file_ext}): {file_path.name}")
+
+            if not file_ext or file_ext not in Config.SUPPORTED_FILE_TYPES:
+                guess_extension = FileManager.guess_file_extension(file_path)
+
+                if guess_extension in Config.SUPPORTED_FILE_TYPES:
+                    logger.info(f"Extensão do arquivo '{file_path.name}' corrigida para '{file_ext}' com base na análise de conteúdo.")
+
+                    file_ext = guess_extension
+                    new_file_path = file_path.with_name(f"{file_path.name}{file_ext}")
+                    file_path.rename(new_file_path)
+                    file_path = new_file_path
+                else:
+                    logger.warning(f"Extensão do arquivo ({file_ext if file_ext else guess_extension}) '{file_path.name}' não encontrada ou arquivo não suportado!")
+                    continue
+            
+            match file_ext:
+                case ".pdf":
+                    text = PdfExtractor.extract_text_from_pdf(file_path)
+                    full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
+                    processed_files.append(file_path.name)
+                case ".docx":
+                    text = DocxExtractor.extract_text_from_docx(file_path)
+                    full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
+                    processed_files.append(file_path.name)
+                case ".doc":
+                    text = DocExtractor.extract_text_from_doc(file_path)
+                    full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
+                    processed_files.append(file_path.name)
+                case ".odt":
+                    text = OdtExtractor.extract_text_from_odt(file_path)
+                    full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
+                    processed_files.append(file_path.name)
+                case ".xls" | ".xlsx" | ".ods":
+                    text = SpreadsheetExtractor.extract_text_from_spreadsheet(file_path, file_extension=file_ext)
+                    full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{text}"
+                    processed_files.append(file_path.name)
+                case ".zip":
+                    file_name = FileManager.get_file_name(file_path)
+                    extract_folder = folder_path / file_name
+                    ZipExtractor.extract_zip_file(file_path, extract_folder)
+                    # Chamada recursiva para extrair o conteúdo do ZIP
+                    full_text, processed_files = AttachmentReader.read_attachment(extract_folder, processed_files, full_text)
+            
 
         if not processed_files:
             logger.warning(f"Nenhum arquivo de anexo processado na pasta: {folder_path}")

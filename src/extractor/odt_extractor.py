@@ -1,7 +1,11 @@
 from pathlib import Path
 from odf.opendocument import load
 from odf.teletype import extractText
+from odf import text as odf_text
+import zipfile
+
 from src.utils.logging_utils import LoggingService
+from src.utils.file_utils import FileManager
 
 logger = LoggingService.get_logger("extractor.odt")
 
@@ -10,14 +14,29 @@ class OdtExtractor:
     
     @staticmethod
     def extract_text_from_odt(file_path: Path) -> str:
-        if not file_path.exists() or not file_path.is_file():
-            logger.warning(f"Arquivo ODT não encontrado: {file_path}")
+        if not FileManager.verify_file_exists(file_path):
+            logger.warning(f"Arquivo ODT não encontrado: {file_path.name}")
             return ""
 
-        logger.info(f"Começando extração de arquivo ODT: {file_path}")
+        if not FileManager.verify_file_has_content(file_path):
+            logger.warning(f"Arquivo ODT está vazio (0 Bytes): {file_path.name}")
+            return ""
+
+        if not zipfile.is_zipfile(file_path):
+            logger.error(f"Arquivo ODT inválido (formato real não é um ODT válido): {file_path.name}")
+            return ""
+
+        logger.info(f"Começando extração de arquivo ODT: {file_path.name}")
+
         try:
             document = load(str(file_path))
-            text = extractText(document).strip()
+
+            # Busca todos os elementos de Parágrafo (P) e Cabeçalho (H)
+            text_elements = document.getElementsByType(odf_text.P) + document.getElementsByType(odf_text.H)
+
+            extracted_texts = [extractText(element) for element in text_elements]
+
+            text = "\n".join(extracted_texts).strip()
             
             if text:
                 logger.info("Texto extraído com sucesso do arquivo ODT")
