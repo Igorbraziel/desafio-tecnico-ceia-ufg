@@ -6,6 +6,7 @@ from pathlib import Path
 from src.utils.logging_utils import LoggingService
 from src.extractor.json_extractor import JsonReader
 from src.extractor.attachment_reader import AttachmentReader
+from src.parser.text_parser import TextParser
 
 def main():
     # Inicializa a configuração de Logging
@@ -34,9 +35,14 @@ def main():
 
     for licitacao in licitacao_list:
         logger.info(f"Processando licitação: {licitacao.numero_pregao}")
+
         full_text, processed_files = AttachmentReader.read_attachment(licitacao.pasta_anexos)
-        logger.info(f"Primeiros 500 caracteres do texto extraído para licitação (total de {len(full_text)} caracteres):\n{full_text[:500]}...")  # Log dos primeiros 500 caracteres do texto extraído
+
+        logger.info(f"Texto extraído para licitação (total de {len(full_text)} caracteres):\n")
         logger.info(f"Numero de arquivos processados para licitação: {len(processed_files)}")
+        
+        processed_text = TextParser.process(raw_text=full_text)
+
 
     duration = time.time() - start_time
     logger.info(f"Tempo total de processamento: {duration:.2f} segundos")

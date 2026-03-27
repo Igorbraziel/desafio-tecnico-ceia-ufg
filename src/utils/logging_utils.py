@@ -32,18 +32,22 @@ class LoggingService:
         if logger.handlers:
             return logger
 
-        formatter = ColoredFormatter(
+        console_formatter = ColoredFormatter(
+            "%(levelname)s | %(name)s | %(message)s"
+        )
+
+        file_formatter = logging.Formatter(
             "%(levelname)s | %(name)s | %(message)s"
         )
 
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.setLevel(logging.INFO)
-        console_handler.setFormatter(formatter)
+        console_handler.setFormatter(console_formatter)
         logger.addHandler(console_handler)
 
         file_handler = logging.FileHandler(log_file, encoding="utf-8")
         file_handler.setLevel(logging.DEBUG)
-        file_handler.setFormatter(formatter)
+        file_handler.setFormatter(file_formatter)
         logger.addHandler(file_handler)
 
         return logger
