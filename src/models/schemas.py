@@ -1,17 +1,15 @@
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from typing import Optional, List
 from pathlib import Path
 
-@dataclass
-class Anexo:
+class Anexo(BaseModel):
     nome: str
     formato: str
     url: str
     caminho: str
     hash_content: str
 
-@dataclass
-class LicitacaoInput:
+class LicitacaoInput(BaseModel):
     """Representa os dados brutos lidos do JSON de entrada."""
     arquivo_json:  str
     numero_pregao: str
@@ -23,17 +21,15 @@ class LicitacaoInput:
     anexos:        List[Anexo]
     pasta_anexos:  Path
 
-@dataclass
-class Item:
+class Item(BaseModel):
     """Representa um item extraído de uma licitação."""
-    item:                 int
-    objeto:               str
-    quantidade:           int
-    unidade_fornecimento: str
-    lote:                 Optional[str | int] = None
+    lote: Optional[str | None] = Field(description='Grupo/lote ao qual o item pertence (ex: "G1" , "G2" , "1" , "2" ). Caso não haja agrupamento, deve ser null.')
+    item: int = Field(description='Número sequencial do item (inteiro, começando em 1).')
+    objeto: str = Field(description='Descrição completa do item, incluindo categoria e especificações técnicas.')
+    quantidade: int = Field(description='Quantidade solicitada do item.')
+    unidade_fornecimento: str = Field(description='Unidade de fornecimento (ex: "Unidade" , "Caixa 50,00 UN" , "Pacote 500,00 FL" )')
 
-@dataclass
-class LicitacaoOutput:
+class LicitacaoOutput(BaseModel):
     """Representa o resultado final de uma licitação processada."""
     arquivo_json:       str
     numero_pregao:      str
