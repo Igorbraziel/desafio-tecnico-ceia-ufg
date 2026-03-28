@@ -39,7 +39,7 @@ class JsonReader:
 
 
                         licitacao_input = LicitacaoInput(
-                            arquivo_json=file_path,
+                            arquivo_json=file_path.name,
                             numero_pregao=data["numero_pregao"],
                             objeto=data["objeto"],
                             orgao=data["orgao"],
