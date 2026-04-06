@@ -62,13 +62,18 @@ brew install antiword tesseract tesseract-lang poppler
     git clone https://github.com/Igorbraziel/desafio-tecnico-ceia-ufg.git
     ```
 
-2. **Crie um ambiente virtual**:
+2. **Entre na pasta**:
+    ```bash
+    cd desafio-tecnico-ceia-ufg
+    ```
+
+3. **Crie um ambiente virtual**:
    ```bash
    python -m venv venv
    source venv/bin/activate  # No Windows: venv\Scripts\activate
    ```
 
-3. **Instale as dependências Python**:
+4. **Instale as dependências Python**:
    ```bash
    pip install -r requirements.txt
    ```
