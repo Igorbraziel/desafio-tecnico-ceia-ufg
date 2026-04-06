@@ -25,7 +25,7 @@ Este projeto automatiza a extração de itens de licitações públicas a partir
 
 4.  **Execute a extração**:
     ```bash
-    python src/main.py --data-path downloads/
+    python -m src.main --data-path downloads/
     ```
 
 ## 📁 Estrutura do Projeto
