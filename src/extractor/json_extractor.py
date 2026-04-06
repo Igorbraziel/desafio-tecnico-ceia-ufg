@@ -6,6 +6,7 @@ from typing import List, Dict, Any
 from src.utils.file_utils import FileManager
 from src.utils.logging_utils import LoggingService
 from src.models.schemas import LicitacaoInput, Anexo
+from src.parser.item_parser import ItemParser
 
 logger = LoggingService.get_logger("extractor.json")
 
@@ -37,6 +38,9 @@ class JsonReader:
                             ) for anexo in data.get("anexos", [])
                         ]
 
+                        # 4. Parsear itens do JSON e criar scaffold para prompt LLM
+                        itens_raw = data.get("itens", [])
+                        _, itens_scaffold = ItemParser.parse_and_format(itens_raw)
 
                         licitacao_input = LicitacaoInput(
                             arquivo_json=file_path.name,
@@ -45,9 +49,10 @@ class JsonReader:
                             orgao=data["orgao"],
                             cidade=data["cidade"],
                             estado=data["estado"],
-                            itens=data["itens"],
+                            itens=itens_raw,
                             anexos=anexos,
-                            pasta_anexos=anexos_folder
+                            pasta_anexos=anexos_folder,
+                            itens_scaffold=itens_scaffold,
                         )
                         licitacao_list.append(licitacao_input)
             except (json.JSONDecodeError, OSError) as e:

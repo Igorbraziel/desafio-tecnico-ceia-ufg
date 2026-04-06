@@ -2,6 +2,7 @@ import zipfile
 
 from pathlib import Path
 from src.utils.logging_utils import LoggingService
+from src.utils.file_utils import FileManager
 
 logger = LoggingService.get_logger("extractor.zip")
 
@@ -18,10 +19,15 @@ class ZipExtractor:
         
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             for file_info in zip_ref.infolist():
+                extracted_path = extract_to / file_info.filename
+
                 try:
                     zip_ref.extract(file_info, extract_to)
                     logger.info(f"Arquivo extraído '{file_info.filename}' para '{extract_to}'")
                 except zipfile.BadZipFile as e:
-                    logger.error(f"Erro de integridade (CRC/Corrompido) no arquivo '{file_info.filename}': {e}")
+                    logger.warning(f"Erro de integridade (CRC/Corrompido) no arquivo '{file_info.filename}': {e}")
+                    FileManager.remove_path(extracted_path)
                 except Exception as e:
                     logger.error(f"Erro inesperado ao extrair '{file_info.filename}': {e}")
+
+    

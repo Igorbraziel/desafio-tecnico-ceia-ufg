@@ -3,16 +3,21 @@ from pathlib import Path
 from typing import Literal
 
 from src.utils.logging_utils import LoggingService
-from src.extractor.config import Config
 
 logger = LoggingService.get_logger("extractor.spreadsheet")
     
 class SpreadsheetExtractor:
     """Classe responsável por extrair texto de arquivos de planilha (XLS, XLSX, ODS) utilizando pandas."""
+    SPREADSHEET_ENGINE_MAP = {
+        ".xls":  "xlrd",
+        ".xlsx": "openpyxl",
+        ".ods":  "odf",
+    }
+    
     @staticmethod
     def extract_text_from_spreadsheet(file_path: Path, file_extension: Literal[".xls", ".xlsx", ".ods"]) -> str:
         """Extrai texto de um arquivo de planilha. Retorna o texto extraído ou uma string vazia em caso de falha."""
-        engine = Config.SPREADSHEET_ENGINE_MAP.get(file_extension)
+        engine = SpreadsheetExtractor.SPREADSHEET_ENGINE_MAP.get(file_extension)
 
         try:
             sheets = pd.read_excel(file_path, sheet_name=None, header=None, engine=engine)
