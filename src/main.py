@@ -22,7 +22,7 @@ def main():
     args = parser.parse_args()
     
     data_path = Path(args.data_path)
-    if not data_path.exists():
+    if not FileManager.verify_folder_exists(data_path):
         logger.error(f"Pasta '{data_path}' não encontrada.")
         sys.exit(1)
         
@@ -36,27 +36,40 @@ def main():
         sys.exit(1)
 
     start_time = time.time()
+    total = len(licitacao_list)
 
-    for licitacao in licitacao_list:
-        logger.info(f"Processando licitação: {licitacao.numero_pregao}")
+    for i, licitacao in enumerate(licitacao_list, 1):
+        logger.info(f"[{i}/{total}] Processando licitação: {licitacao.numero_pregao}")
 
         full_processed_text, processed_files = AttachmentReader.read_attachment(licitacao.pasta_anexos)
 
-        logger.info(f"Texto extraído para licitação (total de {len(full_processed_text)} caracteres):\n")
-        logger.info(f"Numero de arquivos processados para licitação: {len(processed_files)}")
+        logger.info(f"Texto extraído (total de {len(full_processed_text)} caracteres)")
+        logger.info(f"Arquivos processados: {len(processed_files)}")
         
         extracted_items = []
         
         if full_processed_text:
-            parsed_response = llm_service.extract_items(parsed_text=full_processed_text)
+            response = llm_service.extract_items(
+                parsed_text=full_processed_text,
+                scaffold=licitacao.itens_scaffold
+            )
             
-            if parsed_response:
-                logger.info(f"Itens de licitação extraidos com sucesso para a licitação: {licitacao.numero_pregao}")
-                extracted_items = [item.model_dump() for item in parsed_response.itens_extraidos]
+            if response:
+                logger.info(f"Itens extraídos com sucesso: {len(response.itens_extraidos)} itens")
+                extracted_items = [item.model_dump() for item in response.itens_extraidos]
             else:
-                logger.warning(f"LLM não retornou nenhum item para a licitação: {licitacao.numero_pregao}")
+                logger.warning(f"LLM não retornou nenhum item para: {licitacao.numero_pregao}")
+        elif licitacao.itens:
+            logger.warning(f"Nenhum texto de documento disponível. Utilizando o campo 'itens' completo na LLM.")
+            raw_items_text = "\n".join(licitacao.itens)
+            response = llm_service.extract_items(
+                parsed_text=raw_items_text,
+                scaffold=""
+            )
+            if response:
+                extracted_items = [item.model_dump() for item in response.itens_extraidos]
         else:
-            logger.warning(f"Nenhum texto processado para a licitação: {licitacao.numero_pregao}")
+            logger.warning(f"Nenhum texto processado e nenhuma base de itens para: {licitacao.numero_pregao}")
 
         licitacao_output = LicitacaoOutput(
             arquivo_json=licitacao.arquivo_json,
@@ -73,7 +86,7 @@ def main():
     duration = time.time() - start_time
     
     logger.info("+" * 50)
-    logger.info(f"Processamento concluido em: {duration:.2f} segundos")
+    logger.info(f"Processamento concluido em: {duration / 60:.2f} minutos")
     FileManager.write_final_result(final_result)
     
 if __name__ == "__main__":
