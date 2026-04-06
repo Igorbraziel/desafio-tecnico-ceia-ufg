@@ -83,7 +83,15 @@ brew install antiword tesseract tesseract-lang poppler
 
 ## Uso
 
-Para executar a extração de itens:
+1. **Baixe o dataset**:
+
+```bash
+python -m scripts.download_dataset
+```
+
+Esse script baixa e extrai o conjunto de dados para o diretório `downloads/`.
+
+2. **Execute a extração de itens**:
 
 ```bash
 python -m src.main --data-path downloads/
@@ -115,10 +123,7 @@ python -m pytest -v tests/services/test_llm_service.py
 python -m pytest -v tests/utils/test_file_utils.py
 
 # Testa os resultados obtidos
-python -m pytest -v tests/integration/test_gabarito_amostra.py
-
-# Fluxo completo de execução
-python -m pytest -v tests/integration/test_main_pipeline.py
+python -m pytest -s -v tests/results/test_gabarito_amostra.py
 ```
 
 Certifique-se de que o ambiente virtual esteja ativado antes de executar os testes.
