@@ -1,5 +1,4 @@
 import json
-import pytest
 import Levenshtein
 
 def evaluate_extraction(resultado_path: str, gabarito_path: str):
@@ -88,6 +87,7 @@ class TestEvaluateExtraction:
         # A acurácia deve ser calculável
         if total_itens > 0:
             acuracia = (corretos / total_itens) * 100
+            print(f"Acurácia: {acuracia:.2f}% ({corretos}/{total_itens} itens corretos)")
             assert 0 <= acuracia <= 100, f"Acurácia deve estar entre 0 e 100, mas foi {acuracia:.2f}%"
         
         # Verifica que failed_items é uma lista

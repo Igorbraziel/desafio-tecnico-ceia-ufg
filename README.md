@@ -83,7 +83,15 @@ brew install antiword tesseract tesseract-lang poppler
 
 ## Uso
 
-Para executar a extração de itens:
+1. **Baixe o dataset**:
+
+```bash
+python -m scripts.download_dataset
+```
+
+Esse script baixa e extrai o conjunto de dados para o diretório `downloads/`.
+
+2. **Execute a extração de itens**:
 
 ```bash
 python -m src.main --data-path downloads/
@@ -115,10 +123,7 @@ python -m pytest -v tests/services/test_llm_service.py
 python -m pytest -v tests/utils/test_file_utils.py
 
 # Testa os resultados obtidos
-python -m pytest -v tests/integration/test_gabarito_amostra.py
-
-# Fluxo completo de execução
-python -m pytest -v tests/integration/test_main_pipeline.py
+python -m pytest -s -v tests/results/test_gabarito_amostra.py
 ```
 
 Certifique-se de que o ambiente virtual esteja ativado antes de executar os testes.
@@ -131,6 +136,8 @@ Certifique-se de que o ambiente virtual esteja ativado antes de executar os test
   - `models/`: Definições de esquemas de dados usando Pydantic
   - `services/`: Integração com serviços externos, incluindo LLM
   - `utils/`: Utilitários para manipulação de arquivos e logging
+- `scripts/`: Scripts utilitários
+  - `download_dataset.py`: Script para baixar e extrair o dataset
 - `tests/`: Testes unitários e de avaliação
 - `downloads/`: Diretório com os dados de entrada (ignorados pelo Git)
 - `results/`: Diretório com os resultados gerados
@@ -143,7 +150,7 @@ Certifique-se de que o ambiente virtual esteja ativado antes de executar os test
 - **Extração de Texto**: Utiliza bibliotecas especializadas como PyMuPDF e pdfplumber para PDFs, python-docx para DOCX, antiword para DOC, pandas para planilhas, e extração recursiva de ZIPs.
 - **Isolamento de Seção**: Aplica regex para isolar seções de itens, removendo conteúdo irrelevante antes do processamento pela LLM.
 - **Scaffold Mínimo**: Gera referências básicas a partir do campo `itens` do JSON, forçando a LLM a extrair descrições completas.
-- **LLM (GPT-4o-mini)**: Contexto extenso (~1M tokens) permite processamento em lote; fallback com chunking para documentos muito grandes.
+- **LLM (GPT-5-mini)**: Contexto extenso, permite processamento em lote; fallback com chunking para documentos muito grandes.
 - **Robustez**: Tratamento abrangente de erros para arquivos corrompidos, ausentes ou mal formatados; OCR como último recurso.
 
 ## Avaliação
@@ -152,6 +159,7 @@ O sistema inclui testes automatizados para validação contra gabarito e auditor
 
 ## Limitações
 
+- Não determinismo: como a solução depende do serviço de uma LLM, o resultado final pode ter alterações em diferentes execuções.
 - PDFs escaneados dependem de OCR (Tesseract), com precisão variável.
 - Documentos com layouts não convencionais podem dificultar o isolamento de seções.
 - O scaffold fallback tem qualidade limitada quando não há anexos, dependendo de descrições resumidas no JSON.
