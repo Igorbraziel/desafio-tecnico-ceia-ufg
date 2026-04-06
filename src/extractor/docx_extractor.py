@@ -1,3 +1,5 @@
+"""Extração de texto de arquivos Microsoft Word (DOCX)."""
+from typing import Any, Iterator, Union
 from docx import Document
 from docx.table import Table
 from docx.text.paragraph import Paragraph
@@ -17,10 +19,10 @@ class DocxExtractor:
     """
 
     @staticmethod
-    def _iter_block_items(document: Document):
+    def _iter_block_items(document: Any) -> Iterator[Union[Paragraph, Table]]:
         """Itera sobre os elementos do corpo do documento na ordem em que aparecem.
         
-        Yields objetos Paragraph e Table na sequência correta do documento,
+        Yields objetos Paragraph e Table na sequência correta do documento.
         """
         body = document.element.body
         for child in body.iterchildren():
@@ -35,7 +37,7 @@ class DocxExtractor:
         try:
             document = Document(str(file_path))
 
-            logger.info(f"Começando extração de documento DOCX: {file_path.name}")
+            logger.debug(f"Começando extração de documento DOCX: {file_path.name}")
 
             document_rows = []
             paragraph_count = 0
@@ -56,7 +58,7 @@ class DocxExtractor:
 
             full_text = "\n".join(document_rows)
 
-            logger.info(
+            logger.debug(
                 f"Extração finalizada: {file_path.name} | "
                 f"parágrafos={paragraph_count}, linhas_tabelas={table_rows_count}, "
                 f"total_linhas={len(document_rows)}"

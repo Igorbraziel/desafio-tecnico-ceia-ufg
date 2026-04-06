@@ -1,7 +1,10 @@
+"""Validação dos resultados da extração comparando com o gabarito oficial."""
 import json
+from typing import Tuple, List, Any
 import Levenshtein
 
-def evaluate_extraction(resultado_path: str, gabarito_path: str):
+def evaluate_extraction(resultado_path: str, gabarito_path: str) -> Tuple[int, int, List[Any]]:
+    """Função que compara o resultado JSON com o gabarito e extrai métricas de acurácia."""
     with open(resultado_path, 'r', encoding='utf-8') as f:
         resultados = json.load(f)
         
@@ -10,7 +13,7 @@ def evaluate_extraction(resultado_path: str, gabarito_path: str):
 
     total_itens_avaliados = 0
     itens_corretos = 0
-    failed_items = []
+    failed_items: List[Any] = []
 
     mapa_resultados = {r["arquivo_json"]: r for r in resultados}
 
@@ -74,7 +77,7 @@ def evaluate_extraction(resultado_path: str, gabarito_path: str):
 class TestEvaluateExtraction:
     """Testes para a avaliação da extração de itens."""
 
-    def test_evaluate_extraction_basic(self):
+    def test_evaluate_extraction_basic(self) -> None:
         """Testa a função de avaliação com os arquivos de resultado e gabarito."""
         total_itens, corretos, failed = evaluate_extraction("results/resultado.json", "results/gabarito.json")
         

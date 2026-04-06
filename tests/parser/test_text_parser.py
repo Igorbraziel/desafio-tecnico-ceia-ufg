@@ -1,15 +1,16 @@
+"""Testes unitários para a classe TextParser."""
 from src.parser.text_parser import TextParser
 
 class TestTextParser:
     
-    def test_chunk_text_short(self):
+    def test_chunk_text_short(self) -> None:
         """Testa o chunking com texto menor que o chunk_size."""
         text = "Hello world"
         chunks = TextParser.chunk_text(text, chunk_size=20, overlap=5)
         assert len(chunks) == 1
         assert chunks[0] == "Hello world"
 
-    def test_chunk_text_long(self):
+    def test_chunk_text_long(self) -> None:
         """Testa o chunking com texto longo, verificando overlap e limites de parágrafo."""
         part1 = "Parágrafo 1 de tamanho razoável para teste."
         part2 = "Parágrafo 2 com mais informações para completar."
@@ -20,7 +21,7 @@ class TestTextParser:
         assert len(chunks) >= 2
         assert chunks[0] == part1
         
-    def test_chunk_text_no_paragraph(self):
+    def test_chunk_text_no_paragraph(self) -> None:
         """Testa chunking em texto longo sem quebras de parágrafo completas."""
         text = "a" * 100
         chunks = TextParser.chunk_text(text, chunk_size=40, overlap=10)
@@ -29,60 +30,60 @@ class TestTextParser:
         assert chunks[2] == "a" * 40 
         assert len(chunks) == 3
 
-    def test_clean_raw_text_empty(self):
+    def test_clean_raw_text_empty(self) -> None:
         """Testa limpeza de string vazia."""
         assert TextParser.clean_raw_text("") == ""
-        assert TextParser.clean_raw_text(None) == ""
+        assert TextParser.clean_raw_text(None) == ""  # type: ignore
 
-    def test_clean_raw_text_control_chars(self):
+    def test_clean_raw_text_control_chars(self) -> None:
         """Testa remoção de caracteres de controle."""
         text = "Texto\x00com\x0bcontrole\x1f"
         assert TextParser.clean_raw_text(text) == "Textocomcontrole"
 
-    def test_clean_raw_text_repeating_dots(self):
+    def test_clean_raw_text_repeating_dots(self) -> None:
         """Testa redução de pontos repetidos."""
         text = "Aguarde........ mais um pouco."
         assert TextParser.clean_raw_text(text) == "Aguarde... mais um pouco."
 
-    def test_clean_raw_text_whitespace(self):
+    def test_clean_raw_text_whitespace(self) -> None:
         """Testa remoção de espaços horizontais excessivos."""
         text = "Muito    espaço \t aqui."
         assert TextParser.clean_raw_text(text) == "Muito espaço aqui."
 
-    def test_clean_raw_text_newlines(self):
+    def test_clean_raw_text_newlines(self) -> None:
         """Testa normalização de quebras de linha."""
         text = "Linha 1\r\nLinha 2\n\n\n\nLinha 3"
         cleaned = TextParser.clean_raw_text(text)
         assert cleaned == "Linha 1\nLinha 2\n\nLinha 3"
 
-    def test_clean_raw_text_hyphenation(self):
+    def test_clean_raw_text_hyphenation(self) -> None:
         """Testa conserto de palavras separadas com hífen no fim da linha."""
         text = "Uma pala-\nvra hifenizada."
         assert TextParser.clean_raw_text(text) == "Uma palavra hifenizada."
 
-    def test_clean_raw_text_punctuation_spacing(self):
+    def test_clean_raw_text_punctuation_spacing(self) -> None:
         """Testa o ajuste de espaços ao redor de pontuações."""
         text = "Cadeira ,mesa . porta:10.5 e fim ;"
         cleaned = TextParser.clean_raw_text(text)
         assert "Cadeira, mesa. porta:10.5 e fim;" in cleaned
 
-    def test_clean_raw_text_line_trimming(self):
+    def test_clean_raw_text_line_trimming(self) -> None:
         """Testa remoção de espaços no início e fim das linhas."""
         text = "   Linha com espaço no início  \nE no fim    \n  "
         cleaned = TextParser.clean_raw_text(text)
         assert cleaned == "Linha com espaço no início\nE no fim"
 
-    def test_isolate_items_section_short_text(self):
+    def test_isolate_items_section_short_text(self) -> None:
         """Se o texto tiver menos de 2000 caracteres, deve retornar sem modificações."""
         short_text = "Um texto bem curto."
         assert TextParser.isolate_items_section(short_text) == short_text
 
-    def test_isolate_items_section_no_anchors(self):
+    def test_isolate_items_section_no_anchors(self) -> None:
         """Texto maior que 2000 chars sem nenhuma âncora retorna o texto."""
         text = "A" * 2500
         assert TextParser.isolate_items_section(text) == text
 
-    def test_isolate_items_section_cuts_start(self):
+    def test_isolate_items_section_cuts_start(self) -> None:
         """Verifica se encontra uma âncora de início válida e corta o arquivo antes dela."""
         prefix = "Lixo no início " * 100  
         anchor = "1 - Itens da Licitação "
@@ -96,7 +97,7 @@ class TestTextParser:
         assert anchor in result
         assert len(result) < len(full_text)
         
-    def test_isolate_items_section_preserves_groups(self):
+    def test_isolate_items_section_preserves_groups(self) -> None:
         """Verifica se o parser consegue estender o corte caso ache Grupos após a âncora de finalização."""
         content = "Conteúdo anterior... " * 100
         stop_anchor = "\nDas obrigações da contratada\n"
@@ -110,7 +111,7 @@ class TestTextParser:
         assert "Relação de Grupos da Licitação" in result
         assert "Grupo 1" in result
 
-    def test_generic_numbered_paragraph_not_matched(self):
+    def test_generic_numbered_paragraph_not_matched(self) -> None:
         """Verifica que '1. DO OBJETO' ou '1. DISPOSIÇÕES' NÃO é usado como âncora de início.
         """
         header = "EDITAL DE PREGÃO ELETRÔNICO N° 90038/2024\n\n"
@@ -127,7 +128,7 @@ class TestTextParser:
         assert "Item 1 - Computador" in result
         assert "Item 2 - Monitor" in result
 
-    def test_minimum_content_guard(self):
+    def test_minimum_content_guard(self) -> None:
         """Se o isolamento produz < 1500 chars de um documento > 10K, retorna texto completo."""
         filler_before = "A" * 5000
         start = "\nRelação de itens\n"
@@ -141,7 +142,7 @@ class TestTextParser:
         
         assert len(result) > 5000
 
-    def test_close_proximity_stop_anchor_skipped(self):
+    def test_close_proximity_stop_anchor_skipped(self) -> None:
         """Se o stop anchor está a < 500 chars do início, busca o próximo."""
         filler = "Z" * 3000
         start = "\nRelação de itens\n"
@@ -157,7 +158,7 @@ class TestTextParser:
         assert "Item 1 - Café" in result
         assert "Item 2 - Açúcar" in result
 
-    def test_local_de_entrega_not_a_stop_anchor(self):
+    def test_local_de_entrega_not_a_stop_anchor(self) -> None:
         """'Local de Entrega' NÃO deve cortar o texto, pois aparece abaixo de cada item
         em documentos relacaoitens do Compras.gov.br."""
         header = "RELAÇÃO DE ITENS\n\n"

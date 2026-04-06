@@ -1,16 +1,20 @@
+"""Módulo principal para execução do pipeline de extração de itens de licitação."""
 import argparse
 import sys
 import time
 from pathlib import Path
+from typing import Any, Literal  # type: ignore
 
 from src.utils.logging_utils import LoggingService
 from src.utils.file_utils import FileManager
 from src.extractor.json_extractor import JsonReader
 from src.extractor.attachment_reader import AttachmentReader
-from src.models.schemas import LicitacaoOutput
+from src.models.schemas import LicitacaoOutput, Item
 from src.services.llm_service import LlmService
+import pandas as pd  # type: ignore
 
-def main():
+def main() -> None:
+    """Função principal que coordena a leitura de licitações, extração de anexos e chamada da LLM."""
     # Inicializa a configuração de Logging
     logger = LoggingService.setup_logging()
     final_result = []
@@ -43,8 +47,8 @@ def main():
 
         full_processed_text, processed_files = AttachmentReader.read_attachment(licitacao.pasta_anexos)
 
-        logger.info(f"Texto extraído (total de {len(full_processed_text)} caracteres)")
-        logger.info(f"Arquivos processados: {len(processed_files)}")
+        logger.debug(f"Texto extraído (total de {len(full_processed_text)} caracteres)")
+        logger.debug(f"Arquivos processados: {len(processed_files)}")
         
         extracted_items = []
         
@@ -78,7 +82,7 @@ def main():
             cidade=licitacao.cidade,
             estado=licitacao.estado,
             anexos_processados=processed_files,
-            itens_extraidos=extracted_items
+            itens_extraidos=[Item(**i) for i in extracted_items]
         )
         
         final_result.append(licitacao_output.model_dump())

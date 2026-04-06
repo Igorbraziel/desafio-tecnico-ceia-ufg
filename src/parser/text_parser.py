@@ -1,3 +1,4 @@
+"""Processamento de texto bruto para limpeza e segmentação em chunks."""
 import re
 from typing import List
 from src.utils.logging_utils import LoggingService
@@ -87,7 +88,6 @@ class TextParser:
     @staticmethod
     def isolate_items_section(text: str) -> str:
         """Tenta isolar a seção de itens, cortando lixo do início."""
-        
         original_len = len(text)
         if original_len < 2000:
             return text
@@ -122,7 +122,7 @@ class TextParser:
         if start_match:
             start_idx = max(0, start_match.start() - 200)
             sliced_text = text[start_idx:]
-            logger.info(f"Corte inicial aplicado. Âncora: '{start_match.group()[:50]}'")
+            logger.debug(f"Corte inicial aplicado. Âncora: '{start_match.group()[:50]}'")
         else:
             logger.warning("Nenhuma âncora de início encontrada. Usando texto completo.")
 

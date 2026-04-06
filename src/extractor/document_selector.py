@@ -1,3 +1,4 @@
+"""Seleção inteligente de documentos prioritários para extração de dados."""
 from pathlib import Path
 from typing import List, Tuple
 

@@ -1,3 +1,4 @@
+"""Coordenação da leitura de múltiplos anexos e extração de texto consolidado."""
 from pathlib import Path
 from typing import Tuple, List, Optional
 
@@ -21,6 +22,7 @@ class AttachmentReader:
     Aplica isolamento de seção por documento para remover texto jurídico
     antes de concatenar os textos.
     """
+
     SUPPORTED_FILE_TYPES = [
         ".pdf",
         ".docx",
@@ -61,7 +63,7 @@ class AttachmentReader:
         Retorna (texto_completo, lista_de_arquivos_processados).
         """
         if not folder_path.exists() or not folder_path.is_dir():
-            logger.info(f"Pasta de anexos não encontrada: {folder_path}")
+            logger.debug(f"Pasta de anexos não encontrada: {folder_path}")
             return "", []
 
         if not processed_files:
@@ -86,7 +88,7 @@ class AttachmentReader:
                 guess_extension = FileManager.guess_file_extension(file_path)
 
                 if guess_extension in cls.SUPPORTED_FILE_TYPES:
-                    logger.info(f"Extensão do arquivo '{file_path.name}' corrigida para '{guess_extension}' com base na análise de conteúdo.")
+                    logger.debug(f"Extensão do arquivo '{file_path.name}' corrigida para '{guess_extension}' com base na análise de conteúdo.")
 
                     file_ext = guess_extension
                     new_file_path = file_path.with_name(f"{file_path.name}{file_ext}")
@@ -115,7 +117,7 @@ class AttachmentReader:
             if len(processed_text) > 2000:
                 isolated_text = TextParser.isolate_items_section(processed_text)
                 if len(isolated_text) < len(processed_text):
-                    logger.info(f"Seção isolada em {file_path.name}: {len(processed_text)} → {len(isolated_text)} chars")
+                    logger.debug(f"Seção isolada em {file_path.name}: {len(processed_text)} → {len(isolated_text)} chars")
                     processed_text = isolated_text
 
             full_text += f"\n\n--- Texto extraído de {file_path.name} ---\n{processed_text}"

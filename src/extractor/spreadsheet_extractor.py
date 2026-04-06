@@ -1,6 +1,7 @@
+"""Extração de texto de planilhas (XLS, XLSX, ODS) utilizando pandas."""
 import pandas as pd
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Any
 
 from src.utils.logging_utils import LoggingService
 
@@ -8,6 +9,7 @@ logger = LoggingService.get_logger("extractor.spreadsheet")
     
 class SpreadsheetExtractor:
     """Classe responsável por extrair texto de arquivos de planilha (XLS, XLSX, ODS) utilizando pandas."""
+
     SPREADSHEET_ENGINE_MAP = {
         ".xls":  "xlrd",
         ".xlsx": "openpyxl",
@@ -20,8 +22,8 @@ class SpreadsheetExtractor:
         engine = SpreadsheetExtractor.SPREADSHEET_ENGINE_MAP.get(file_extension)
 
         try:
-            sheets = pd.read_excel(file_path, sheet_name=None, header=None, engine=engine)
-            logger.info(f"Planilha lida com sucesso: {file_path} | ext: {file_extension}")
+            sheets = pd.read_excel(file_path, sheet_name=None, header=None, engine=engine)  # type: ignore
+            logger.debug(f"Planilha lida com sucesso: {file_path} | ext: {file_extension}")
         except Exception as e:
             logger.error(f"Pandas falhou na leitura da planilha: {file_path}\n Erro: {e}")
             raise RuntimeError("Pandas falhou:", e)

@@ -1,3 +1,4 @@
+"""Parser para o campo 'itens' do JSON, extraindo dados estruturados de strings semi-formatadas."""
 import re
 from typing import List, Optional, Tuple
 from src.utils.logging_utils import LoggingService
@@ -6,9 +7,8 @@ logger = LoggingService.get_logger("parser.item_parser")
 
 
 class ItemParser:
-    """
-    Responsável por parsear o campo 'itens' semi-estruturado do JSON de entrada.
-    """
+    """Responsável por parsear o campo 'itens' semi-estruturado do JSON de entrada."""
+
     ITEM_PATTERN = re.compile(
         r'(\d+)\s*-\s*' # Número do item
         r'(.+?)' # Nome/título do item (até Tratamento ou Quantidade)

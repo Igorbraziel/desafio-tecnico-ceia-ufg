@@ -1,3 +1,5 @@
+"""Serviço de extração de dados utilizando uma LLM."""
+
 import os
 import re
 from dotenv import load_dotenv
@@ -19,13 +21,13 @@ class LlmService:
     CHUNK_SIZE = 180_000
     CHUNK_OVERLAP = 10_000
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """Inicializa o cliente OpenAI e define o modelo fundamentado em variáveis de ambiente."""
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.model = os.getenv("OPENAI_MODEL", default="gpt-5-mini")
 
     def _build_system_prompt(self, has_scaffold: bool) -> str:
         """Constrói o prompt de sistema em português."""
-
         prompt = """Você é um assistente especializado em licitações públicas brasileiras.
         Sua missão é extrair a relação COMPLETA de itens licitados a partir do texto dos DOCUMENTOS fornecidos (edital, termo de referência, relação de itens, etc.).
         
@@ -106,7 +108,7 @@ class LlmService:
             system_prompt = f"{system_prompt}\n\n{context_instruction}"
 
         try:
-            logger.info(f"Enviando texto para LLM ({len(user_prompt)} caracteres)")
+            logger.debug(f"Enviando texto para LLM ({len(user_prompt)} caracteres)")
 
             response = self.client.beta.chat.completions.parse(
                 model=self.model,
@@ -119,14 +121,14 @@ class LlmService:
 
             result = response.choices[0].message.parsed
             if result:
-                logger.info(f"LLM retornou {len(result.itens_extraidos)} itens")
+                logger.debug(f"LLM retornou {len(result.itens_extraidos)} itens")
             return result
 
         except Exception as e:
             logger.error(f"Erro ao extrair itens utilizando a LLM: {e}")
             return None
 
-    def _deduplicate_items(self, items: List[Item]) -> List:
+    def _deduplicate_items(self, items: List[Item]) -> List[Item]:
         """Remove itens duplicados usando uma chave única composta por ('item' e 'lote').
         
         Quando duplicatas são encontradas (mesmo 'item' e 'lote'), mantém a versão 
@@ -155,7 +157,7 @@ class LlmService:
         result = sorted(unique_items_dict.values(), key=lambda x: (x.item, x.lote or ""))
         
         if len(result) < len(items):
-            logger.info(f"Deduplicação por número de item: {len(items)} → {len(result)} itens")
+            logger.debug(f"Deduplicação por número de item: {len(items)} → {len(result)} itens")
         
         return result
 
@@ -188,7 +190,7 @@ class LlmService:
         text_length = len(parsed_text) + len(scaffold)
 
         if text_length <= self.MAX_SINGLE_CALL_CHARS:
-            logger.info("Texto cabe em chamada única. Enviando tudo de uma vez.")
+            logger.debug("Texto cabe em chamada única. Enviando tudo de uma vez.")
             user_prompt = self._build_user_prompt(parsed_text, scaffold)
             return self._call_llm(user_prompt, has_scaffold)
 
@@ -207,13 +209,13 @@ class LlmService:
         chunks_processed = 0
         last_known_item_num = None
         last_known_lote = None
-        logger.info(f"Dividido em {total_chunks} chunks para extração.")
+        logger.debug(f"Dividido em {total_chunks} chunks para extração.")
 
         if expected_count:
-            logger.info(f"Total esperado de itens (do scaffold): {expected_count}")
+            logger.debug(f"Total esperado de itens (do scaffold): {expected_count}")
 
         for i, chunk in enumerate(chunks, 1):
-            logger.info(f"Processando chunk {i}/{total_chunks}...")
+            logger.debug(f"Processando chunk {i}/{total_chunks}...")
 
             context_instruction = ""
             if i > 1 and last_known_item_num is not None:
@@ -245,7 +247,7 @@ class LlmService:
             current_count = len(master_item_list.itens_extraidos)
             if expected_count and current_count >= expected_count:
                 if i < total_chunks:
-                    logger.info(
+                    logger.debug(
                         f"Early stop: {current_count} itens coletados "
                         f"(esperado: {expected_count}). Pulando {total_chunks - i} chunk(s) restante(s)."
                     )

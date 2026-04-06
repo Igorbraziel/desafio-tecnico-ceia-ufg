@@ -1,8 +1,9 @@
+"""Testes unitários para o DocumentSelector."""
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from src.extractor.document_selector import DocumentSelector
 
-def test_ignored_documents_filtered_out(tmp_path):
+def test_ignored_documents_filtered_out(tmp_path: Path) -> None:
     # Criar arquivos que devem ser ignorados
     (tmp_path / "contrato.pdf").touch()
     (tmp_path / "planilha_custos.xlsx").touch()
@@ -11,7 +12,7 @@ def test_ignored_documents_filtered_out(tmp_path):
     docs = DocumentSelector.select_best_documents(tmp_path)
     assert len(docs) == 0
 
-def test_priority_documents_selected(tmp_path):
+def test_priority_documents_selected(tmp_path: Path) -> None:
     # Criar um arquivo prioritário e arquivos de fallback
     (tmp_path / "edital_123.pdf").touch()
     (tmp_path / "anexo_secundario.pdf").touch()
@@ -23,7 +24,7 @@ def test_priority_documents_selected(tmp_path):
     assert len(docs) == 1
     assert "edital" in docs[0].name.lower()
 
-def test_multiple_priority_documents_sorting(tmp_path):
+def test_multiple_priority_documents_sorting(tmp_path: Path) -> None:
     # Criar vários arquivos prioritários
     (tmp_path / "edital_123.pdf").touch()
     (tmp_path / "termo_referencia.pdf").touch()
@@ -34,7 +35,7 @@ def test_multiple_priority_documents_sorting(tmp_path):
     assert "termo_referencia" in docs[0].name.lower()
     assert "edital" in docs[1].name.lower()
 
-def test_fallback_documents_selected_when_no_priority(tmp_path):
+def test_fallback_documents_selected_when_no_priority(tmp_path: Path) -> None:
     # Nenhum arquivo prioritario nem ignorado, apenas fallback
     (tmp_path / "anexo_1.pdf").touch()
     (tmp_path / "anexo_2.pdf").touch()
@@ -45,7 +46,7 @@ def test_fallback_documents_selected_when_no_priority(tmp_path):
     assert len(docs) == 2
 
 @patch('src.extractor.document_selector.FileManager.verify_file_exists')
-def test_ignore_missing_files(mock_verify_exists, tmp_path):
+def test_ignore_missing_files(mock_verify_exists: MagicMock, tmp_path: Path) -> None:
     mock_verify_exists.return_value = False
     
     # Cria o arquivo para iterdir() pegar, mas o FileManager dirá que não existe

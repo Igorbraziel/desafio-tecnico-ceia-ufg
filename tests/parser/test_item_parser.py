@@ -1,6 +1,7 @@
+"""Testes unitários para o ItemParser."""
 from src.parser.item_parser import ItemParser
 
-def test_parse_itens_field_standard_format():
+def test_parse_itens_field_standard_format() -> None:
     raw_itens = [
         "1 - Cadeira de Escritório\nCadeira ergonômica preta para escritório, com rodas.\nTratamento Diferenciado: Tipo I - Participação Exclusiva de ME/EPP\nQuantidade: 15\nValor Estimado: R$ 500,00\nUnidade de fornecimento: Unidade\n----------\n",
         "2 - Mesa de Computador\nMesa retangular em L.\nAplicabilidade Margem de Preferência: Não\nQuantidade: 5\nValor Estimado: R$ 400,00\nUnidade de fornecimento: Peça\n----------"
@@ -25,11 +26,11 @@ def test_parse_itens_field_standard_format():
     assert "Mesa de Computador" in item2["objeto"]
     assert "Aplicabilidade" not in item2["objeto"]
 
-def test_parse_itens_field_empty():
+def test_parse_itens_field_empty() -> None:
     assert ItemParser.parse_itens_field([]) == []
     assert ItemParser.parse_itens_field([""]) == []
 
-def test_format_scaffold_for_prompt():
+def test_format_scaffold_for_prompt() -> None:
     parsed_items = [
         {"item": 1, "objeto": "Monitor 24 polegadas LED", "quantidade": 20, "unidade_fornecimento": "Unidade"},
         {"item": 2, "objeto": "Teclado USB", "quantidade": 30, "unidade_fornecimento": "Unidade"}
@@ -41,7 +42,7 @@ def test_format_scaffold_for_prompt():
     assert "Item 1 | Nome: Monitor 24 polegadas LED | Qtd: 20" in scaffold
     assert "Item 2 | Nome: Teclado USB | Qtd: 30" in scaffold
 
-def test_format_scaffold_truncates_long_names():
+def test_format_scaffold_truncates_long_names() -> None:
     long_name = "X" * 150
     parsed_items = [
         {"item": 1, "objeto": long_name, "quantidade": 1, "unidade_fornecimento": "Unidade"}
@@ -53,7 +54,7 @@ def test_format_scaffold_truncates_long_names():
     assert expected_truncated in scaffold
     assert len(expected_truncated) == 80
 
-def test_format_scaffold_removes_duplicate_prefix():
+def test_format_scaffold_removes_duplicate_prefix() -> None:
     # Testa o name_pattern que retira strings repetidas do começo.
     parsed_items = [
         {"item": 1, "objeto": "NOTEBOOK NOTEBOOK DELL 16GB", "quantidade": 10, "unidade_fornecimento": "Unidade"}

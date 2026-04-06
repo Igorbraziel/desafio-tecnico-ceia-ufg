@@ -1,9 +1,11 @@
+"""Configuração centralizada de logs com suporte a cores no console."""
 import logging
 import sys
 from pathlib import Path
 
 class ColoredFormatter(logging.Formatter):
     """Formatação de log colorida para melhorar a legibilidade no console."""
+
     COLOR_CODES = {
         logging.DEBUG: "\033[36m",  # Cyan
         logging.INFO: "\033[0m",   # Default
@@ -12,16 +14,19 @@ class ColoredFormatter(logging.Formatter):
     }
     RESET_CODE = "\033[0m"
 
-    def format(self, record):
+    def format(self, record: logging.LogRecord) -> str:
+        """Formata o registro de log com cores baseadas no nível."""
         color_code = self.COLOR_CODES.get(record.levelno, self.RESET_CODE)
         formatted_message = super().format(record)
         return f"{color_code}{formatted_message}{self.RESET_CODE}"
 
 class LoggingService:
+    """Serviço para configuração e obtenção de loggers padronizados."""
+
     @staticmethod
     def setup_logging(name: str = "licitacoes", log_file: str = "results/processing.log") -> logging.Logger:
-        """
-        Configura o logging centralizado para o projeto.
+        """Configura o logging centralizado para o projeto.
+
         Loga tanto no console (INFO) quanto em um arquivo (DEBUG).
         """
         Path(log_file).parent.mkdir(parents=True, exist_ok=True)

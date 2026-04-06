@@ -1,3 +1,4 @@
+"""Extração e processamento de metadados a partir de arquivos JSON de licitação."""
 import json
 import logging
 from pathlib import Path
@@ -12,6 +13,7 @@ logger = LoggingService.get_logger("extractor.json")
 
 class JsonReader:
     """Classe responsável pela leitura e processamento dos arquivos JSON."""
+
     @staticmethod
     def extract_downloads_info(downloads_dir: Path) -> List[LicitacaoInput]:
         """Extrai informações dos arquivos JSON na pasta de downloads e retorna uma lista de objetos LicitacaoInput."""

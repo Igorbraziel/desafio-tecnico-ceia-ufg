@@ -1,7 +1,8 @@
+"""Extração de texto de arquivos OpenDocument Text (.odt)."""
 from pathlib import Path
-from odf.opendocument import load
-from odf.teletype import extractText
-from odf import text as odf_text
+from odf.opendocument import load  # type: ignore
+from odf.teletype import extractText  # type: ignore
+from odf import text as odf_text  # type: ignore
 import zipfile
 
 from src.utils.logging_utils import LoggingService
@@ -14,6 +15,7 @@ class OdtExtractor:
     
     @staticmethod
     def extract_text_from_odt(file_path: Path) -> str:
+        """Extrai texto de um arquivo ODT mantendo a ordem dos parágrafos e cabeçalhos."""
         if not FileManager.verify_file_exists(file_path):
             logger.warning(f"Arquivo ODT não encontrado: {file_path.name}")
             return ""
@@ -26,7 +28,7 @@ class OdtExtractor:
             logger.error(f"Arquivo ODT inválido (formato real não é um ODT válido): {file_path.name}")
             return ""
 
-        logger.info(f"Começando extração de arquivo ODT: {file_path.name}")
+        logger.debug(f"Começando extração de arquivo ODT: {file_path.name}")
 
         try:
             document = load(str(file_path))
@@ -39,7 +41,7 @@ class OdtExtractor:
             text = "\n".join(extracted_texts).strip()
             
             if text:
-                logger.info("Texto extraído com sucesso do arquivo ODT")
+                logger.debug("Texto extraído com sucesso do arquivo ODT")
                 return text
             else:
                 logger.warning(f"Nenhum texto extraído do arquivo ODT: {file_path.name}")

@@ -1,8 +1,11 @@
+"""Definição de modelos de dados (Pydantic) para entrada e saída do sistema."""
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from pathlib import Path
 
 class Anexo(BaseModel):
+    """Representa um arquivo anexo associado a uma licitação."""
+
     nome: str
     formato: str
     url: str
@@ -11,6 +14,7 @@ class Anexo(BaseModel):
 
 class LicitacaoInput(BaseModel):
     """Representa os dados brutos lidos do JSON de entrada."""
+
     arquivo_json:  str
     numero_pregao: str
     objeto:        str
@@ -24,6 +28,7 @@ class LicitacaoInput(BaseModel):
 
 class Item(BaseModel):
     """Representa um item extraído de uma licitação."""
+
     lote: Optional[str | None] = Field(description='Grupo/lote ao qual o item pertence (ex: "G1" , "G2" , "1" , "2" ). Caso não haja agrupamento, deve ser null.')
     item: int = Field(description='Número sequencial do item (inteiro).')
     objeto: str = Field(description='Descrição completa do item, incluindo categoria e especificações técnicas.')
@@ -32,10 +37,12 @@ class Item(BaseModel):
     
 class ItemList(BaseModel):
     """Representa a lista de itens extraídos de uma licitação."""
+
     itens_extraidos: List[Item]
 
 class LicitacaoOutput(BaseModel):
     """Representa o resultado final de uma licitação processada."""
+
     arquivo_json:       str
     numero_pregao:      str
     orgao:              str

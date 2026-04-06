@@ -1,6 +1,8 @@
-import fitz  # PyMuPDF
+"""Extração de texto de arquivos PDF utilizando múltiplas estratégias (PyMuPDF, pdfplumber, OCR)."""
+
+import fitz  # type: ignore # PyMuPDF
 import pdfplumber
-import pytesseract
+import pytesseract  # type: ignore
 from pdf2image import convert_from_path
 from pathlib import Path
 
@@ -33,7 +35,7 @@ class PdfExtractor:
 
             if pages_text:
                 full_text = "\n".join(pages_text)
-                logger.info(f"Texto extraído com sucesso via PyMuPDF ({len(pages_text)} páginas)")
+                logger.debug(f"Texto extraído com sucesso via PyMuPDF ({len(pages_text)} páginas)")
                 return full_text
         except fitz.FileDataError as e:
             logger.error(f"Arquivo não é um PDF válido '{pdf_path.name}': {e}")
@@ -61,7 +63,7 @@ class PdfExtractor:
                                         tables_text.append(" | ".join(cells))
 
             if tables_text:
-                logger.info(f"Tabelas extraídas com pdfplumber ({len(tables_text)} linhas)")
+                logger.debug(f"Tabelas extraídas com pdfplumber ({len(tables_text)} linhas)")
                 return "\n".join(tables_text)
         except Exception as e:
             logger.error(f"Erro ao extrair tabelas com pdfplumber '{pdf_path.name}': {e}")
@@ -77,7 +79,7 @@ class PdfExtractor:
                     page.extract_text() for page in pdf.pages if page.extract_text()
                 )
                 if text.strip():
-                    logger.info("Texto extraído com sucesso via pdfplumber (fallback texto)")
+                    logger.debug("Texto extraído com sucesso via pdfplumber (fallback texto)")
                     return text
         except Exception as e:
             logger.error(f"Erro ao extrair texto com pdfplumber '{pdf_path.name}': {e}")
@@ -98,7 +100,7 @@ class PdfExtractor:
 
             full_ocr_text = "\n".join(ocr_text).strip()
             if full_ocr_text:
-                logger.info(f"Texto extraído com sucesso via OCR ({len(ocr_text)} páginas)")
+                logger.debug(f"Texto extraído com sucesso via OCR ({len(ocr_text)} páginas)")
                 return full_ocr_text
 
             logger.warning(f"Nenhum texto extraído mesmo com OCR!")
@@ -119,6 +121,8 @@ class PdfExtractor:
             if not is_valid:
                 logger.warning(f"PDF '{pdf_path.name}' parece estar vazio ou sem páginas extraíveis. Abortando extração.")
                 return True
+            
+            return False
         except Exception as e:
             logger.warning(f"Falha ao validar estruturalmente o PDF '{pdf_path.name}' cruzado com PyMuPDF. Abortando extração. Erro: {e}")
             return True
@@ -137,7 +141,7 @@ class PdfExtractor:
             logger.warning(f"Arquivo vazio (0 bytes) ignorado: {pdf_path.name}")
             return ""
 
-        logger.info(f"Começando extração de arquivo PDF: {pdf_path.name}")
+        logger.debug(f"Começando extração de arquivo PDF: {pdf_path.name}")
 
         if cls._verify_pdf_is_corrupted(pdf_path):
             return ""

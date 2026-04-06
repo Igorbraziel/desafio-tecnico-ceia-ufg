@@ -1,19 +1,21 @@
+"""Testes unitários para o PdfExtractor."""
 import pytest
 from pathlib import Path
+from typing import Generator
 from unittest.mock import patch, MagicMock
 
-import fitz
+import fitz  # type: ignore
 from src.extractor.pdf_extractor import PdfExtractor
 
 @pytest.fixture
-def mock_file_manager():
+def mock_file_manager() -> Generator[MagicMock, None, None]:
     with patch('src.extractor.pdf_extractor.FileManager') as mock:
         mock.verify_file_exists.return_value = True
         mock.verify_file_has_content.return_value = True
         yield mock
 
 @patch('src.extractor.pdf_extractor.fitz.open')
-def test_successful_pymupdf_extraction(mock_fitz_open, mock_file_manager):
+def test_successful_pymupdf_extraction(mock_fitz_open: MagicMock, mock_file_manager: MagicMock) -> None:
     mock_doc = MagicMock()
     mock_doc.is_pdf = True
     mock_doc.page_count = 1
@@ -33,7 +35,7 @@ def test_successful_pymupdf_extraction(mock_fitz_open, mock_file_manager):
 
 @patch('src.extractor.pdf_extractor.fitz.open')
 @patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_pdfplumber_text')
-def test_fallback_to_pdfplumber(mock_pdfplumber_text, mock_fitz_open, mock_file_manager):
+def test_fallback_to_pdfplumber(mock_pdfplumber_text: MagicMock, mock_fitz_open: MagicMock, mock_file_manager: MagicMock) -> None:
     mock_doc = MagicMock()
     mock_doc.is_pdf = True
     mock_doc.page_count = 1
@@ -54,7 +56,7 @@ def test_fallback_to_pdfplumber(mock_pdfplumber_text, mock_fitz_open, mock_file_
 @patch('src.extractor.pdf_extractor.fitz.open')
 @patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_pdfplumber_text')
 @patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_ocr')
-def test_fallback_to_ocr(mock_ocr, mock_pdfplumber_text, mock_fitz_open, mock_file_manager):
+def test_fallback_to_ocr(mock_ocr: MagicMock, mock_pdfplumber_text: MagicMock, mock_fitz_open: MagicMock, mock_file_manager: MagicMock) -> None:
     mock_doc = MagicMock()
     mock_doc.is_pdf = True
     mock_doc.page_count = 1
@@ -72,7 +74,7 @@ def test_fallback_to_ocr(mock_ocr, mock_pdfplumber_text, mock_fitz_open, mock_fi
     mock_ocr.assert_called_once()
 
 @patch('src.extractor.pdf_extractor.fitz.open')
-def test_file_data_error_aborts(mock_fitz_open, mock_file_manager):
+def test_file_data_error_aborts(mock_fitz_open: MagicMock, mock_file_manager: MagicMock) -> None:
     # Verifica validacao inicial estrutural de pdf broken
     mock_fitz_open.side_effect = fitz.FileDataError("Corrupted")
     

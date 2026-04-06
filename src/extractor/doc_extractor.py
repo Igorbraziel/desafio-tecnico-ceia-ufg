@@ -1,3 +1,4 @@
+"""Extração de texto de arquivos legados Microsoft Word (.doc) usando antiword."""
 import subprocess
 from pathlib import Path
 from src.utils.logging_utils import LoggingService
@@ -14,7 +15,7 @@ class DocExtractor:
             logger.warning(f"Arquivo DOC não encontrado: {file_path}")
             return ""
 
-        logger.info(f"Começando extração de arquivo DOC: {file_path}")
+        logger.debug(f"Começando extração de arquivo DOC: {file_path}")
         try:
             result = subprocess.run(
                 ["antiword", "-m", "UTF-8", str(file_path)],
@@ -25,7 +26,7 @@ class DocExtractor:
             text = result.stdout.strip()
             
             if text:
-                logger.info("Texto extraído com sucesso do arquivo DOC (utilizando antiword)")
+                logger.debug("Texto extraído com sucesso do arquivo DOC (utilizando antiword)")
                 return text
             
             logger.warning(f"Nenhum texto extraído do arquivo DOC: {file_path.name}")
