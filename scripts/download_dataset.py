@@ -5,7 +5,7 @@ from pathlib import Path
 
 DATASET_URL = "https://github.com/Igorbraziel/desafio-tecnico-ceia-ufg/releases/download/dataset/downloads.zip"
 ZIP_PATH = "downloads.zip"
-EXTRACT_PATH = Path("downloads")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 def download_zip():
     print("Downloading zip dataset...")
@@ -20,25 +20,20 @@ def download_zip():
                     f.write(chunk)
         
         print("Download completo!")
-            
     except Exception as e:
         print(f"Erro no download do arquivo zip: {e}")
-        
+
 def extract_zip():
     print("Extraindo arquivo zip...")
     try:
         with zipfile.ZipFile(ZIP_PATH, "r") as zip_ref:
-            zip_ref.extractall(EXTRACT_PATH)
-            
+            zip_ref.extractall(PROJECT_ROOT)
+
         print("Extração completa")
     except Exception as e:
         print(f"Erro ao extrair zip dataset: {e}")
-        
+
 def main():
-    if EXTRACT_PATH.exists():
-        print("⚠️ Dataset já existente, abortando operação...")
-        return
-    
     download_zip()
     extract_zip()
     
