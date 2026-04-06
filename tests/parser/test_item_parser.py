@@ -1,4 +1,3 @@
-import pytest
 from src.parser.item_parser import ItemParser
 
 def test_parse_itens_field_standard_format():
@@ -62,10 +61,5 @@ def test_format_scaffold_removes_duplicate_prefix():
     
     scaffold = ItemParser.format_scaffold_for_prompt(parsed_items)
     
-    # regex \b remove a duplicada no comeco "NOTEBOOK "
-    assert "Nome: NOTEBOOK NOTEBOOK DELL 16GB" not in scaffold # Fallback?
-    # Wait, the regex is: `r"^(.+?)\s+\1\b"`. "NOTEBOOK" \s+ "NOTEBOOK\b" matches. 
-    # group 1 is "NOTEBOOK". Wait, the logic sets nome = match.group(1).
-    # If the regex matches `NOTEBOOK NOTEBOOK`, `match.group(1)` is `NOTEBOOK`.
-    # Let's ensure logic works as written.
+    assert "Nome: NOTEBOOK NOTEBOOK DELL 16GB" not in scaffold
     assert "Nome: NOTEBOOK" in scaffold

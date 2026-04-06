@@ -34,13 +34,12 @@ def test_successful_pymupdf_extraction(mock_fitz_open, mock_file_manager):
 @patch('src.extractor.pdf_extractor.fitz.open')
 @patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_pdfplumber_text')
 def test_fallback_to_pdfplumber(mock_pdfplumber_text, mock_fitz_open, mock_file_manager):
-    # fitz says PDF is valid but returns empty text (e.g. scanned image with no text layer)
     mock_doc = MagicMock()
     mock_doc.is_pdf = True
     mock_doc.page_count = 1
     
     mock_page = MagicMock()
-    mock_page.get_text.return_value = "" # No text extracted
+    mock_page.get_text.return_value = ""
     mock_doc.__iter__.return_value = [mock_page]
     
     mock_fitz_open.return_value = mock_doc
@@ -56,7 +55,6 @@ def test_fallback_to_pdfplumber(mock_pdfplumber_text, mock_fitz_open, mock_file_
 @patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_pdfplumber_text')
 @patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_ocr')
 def test_fallback_to_ocr(mock_ocr, mock_pdfplumber_text, mock_fitz_open, mock_file_manager):
-    # Both fitz and pdfplumber return empty
     mock_doc = MagicMock()
     mock_doc.is_pdf = True
     mock_doc.page_count = 1
@@ -76,12 +74,10 @@ def test_fallback_to_ocr(mock_ocr, mock_pdfplumber_text, mock_fitz_open, mock_fi
 @patch('src.extractor.pdf_extractor.fitz.open')
 def test_file_data_error_aborts(mock_fitz_open, mock_file_manager):
     # Verifica validacao inicial estrutural de pdf broken
-    # fitz throws on first attempt
     mock_fitz_open.side_effect = fitz.FileDataError("Corrupted")
     
     with patch('src.extractor.pdf_extractor.PdfExtractor._extract_with_pdfplumber_text') as mock_plumber:
         text = PdfExtractor.extract_text_from_pdf(Path("broken.pdf"))
         
-        # Must abort fallback and return empty
         assert text == ""
         mock_plumber.assert_not_called()
