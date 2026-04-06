@@ -91,10 +91,3 @@ venv.bak/
 
 # Mypy
 .mypy_cache/
-
-# PDF files
-*.pdf
-
-# Results
-results/
-resultado.json
