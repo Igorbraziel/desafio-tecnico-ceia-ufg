@@ -1,0 +1,364 @@
+[
+  {
+    "arquivo_json": "2024-08-15-09-33-44-conlicitacao-0a71f31139187dbb40b32437ad3794f0.json",
+    "numero_pregao": "PE/90034/2024",
+    "orgao": "MINISTÉRIO DA DEFESA - Comando da Marinha - Comando de Operações Navais - Comando do 2º Distrito Naval - Base Naval de Aratu",
+    "cidade": "Salvador",
+    "estado": "BA",
+    "anexos_processados": [
+      "02_-_termo_de_referncia-5a8119.pdf",
+      "relacaoitens78280105900342024000-19a297.pdf"
+    ],
+    "itens_extraidos": [
+      {
+        "lote": null,
+        "item": 1,
+        "objeto": "Contratação de empresa especializada em Tecnologia da Informação para fornecer serviços que atendas as necessidades da área industrial da Base Naval de Aratu",
+        "quantidade": 3,
+        "unidade_fornecimento": "MENSAL"
+      }
+    ]
+  },
+  {
+    "arquivo_json": "2024-08-15-09-33-44-conlicitacao-164dd14eb625bb75bf0566e11d2ceca8.json",
+    "numero_pregao": "PE/90101/2024",
+    "orgao": "Prefeitura Municipal de Realeza",
+    "cidade": "Realeza",
+    "estado": "PR",
+    "anexos_processados": [
+      "edital_pe_101-c0a63e.pdf",
+      "relacaoitens98780505901012024000-133f92.pdf"
+    ],
+    "itens_extraidos": [
+      {
+        "lote": "Lote 1",
+        "item": 1,
+        "objeto": "AMPLIFICADOR PARA BAIXO- LINHA: IMPACT BASS, ALTO- FALANTE DE 12 POLEGADAS, TWEETER FENÓLICO PARA REALÇAR AS FREQUÊNCIAS ALTAS, 150W RMS, ENTRADA PARA BAIXO ATIVO OU PASSIVO INDEPENDENTES, CONTROLE DE GRAVE, MÉDIO E AGUDO, AJUSTES DE GANHO E MASTER INDEPENDENTES, SAÍDA DE LINHA, SAÍDA DIRECT OUT BALANCEADA, SAÍDA PARA CAIXA PASSIVA, PROTEÇÃO TÉRMICA DO CIRCUITO DE AMPLIFICAÇÃO, GABINETE RECLINÁVEL PARA USO COMO MONITOR DE PALCO, ALÇAS LATERAIS, GRADE DE PROTEÇÃO DE AÇO PERFURADA PARA PROTEGER O ALTOFALANTE E TWEETER, ACABAMENTO EM COURO ECOLÓGICO PRETO, CHAVE COMUTADORA DE TENSÃO 110V OU 220V AC (APRESENTAR AMOSTRA)",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 2,
+        "objeto": "BATERIA ACÚSTICA ONIX SKINNY 20- BATERIA COMPOSTA DE DOIS TONS, BOBO, SURDO, CAIXA, BANCO, AROS E FERRAGENS EM METAL (APRESENTAR AMOSTRA)",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 3,
+        "objeto": "BOMBARDIDO- 3 PISTOS EM SI BEMOL (APRESENTAR AMOSTRA)",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 4,
+        "objeto": "BRAÇO DATASHOW- LARGURA DA BANDEJA: 28 ATÉ 40CM - PROFUNDIDADE DA BANDEJA: 26CM - LOCAL DE INSTALAÇÃO: TETO - DISTÂNCIA MÍNIMA DO TETO: 50 CM - DISTÂNCIA MÁXIMA DO TETO: 75 CM - CARGA MÁXIMA: 15 KG - COR: BRANCA OU PRETO - MATERIAL DO SUPORTE: AÇO CARBONO COM PINTURA ELETROSTÁTICA A PÓ. - GIRO DO PROJETOR: 360o - PONTOS DE FIXAÇÃO: 3 PONTOS NO TETO - DIMENSÕES DA EMBALAGEM - FABRICAÇÃO: NACIONAL",
+        "quantidade": 8,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 5,
+        "objeto": "CABO HDMI 100M METROS- CABO HDMI 100M METROS FULLH - 8K ALTA RESOLUÇÃO CABO NA COR PRETA.",
+        "quantidade": 6,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 6,
+        "objeto": "CABO HDMI 20M METROS- CABO HDMI 20M METROS ULTRA HD 3D - 4K ALTA RESOLUÇÃO – CABO NA COR PRETA",
+        "quantidade": 10,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 7,
+        "objeto": "CABO MICROFONE 2X0,30 BALANCEADO ESTÉREO BLINDADO- CABO PARA MICROFONE BALANCEADO 2X0,30 MM - ROLO COM 100 METROS - CONDUTOR 2X0,30 MM2 - ESTÉREO - ISOLAMENTO POLIETILENO - BLINDAGEM FITA DE ALUMÍNIO + BLINDAGEM EM COBRE TRANÇADO (64% DE MALHA DE COBERTURA DE COBRE ESTANHADO) - COBERTURA PVC FLEXÍVEL - IMPEDÂNCIA 56 OHMS",
+        "quantidade": 12,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 8,
+        "objeto": "CABO P/ MICROFONE E DMX 10 METROS- CABO BALANCEADO, PONTAS DE CONEXÃO CANNON XLR MACHO E FÊMEA, DIÂMETRO 6MM BLINDADO, TAMANHO – 10 METROS, COR DO CABO – PRETO",
+        "quantidade": 5,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 9,
+        "objeto": "CABO P/ MICROFONE E DMX 5 METROS- CABO BALANCEADO, PONTAS DE CONEXÃO CANNON XLR MACHO E FÊMEA, DIÂMETRO 6MM BLINDADO, TAMANHO – 5 METROS, COR DO CABO – PRETO",
+        "quantidade": 4,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 10,
+        "objeto": "CABO P10 X P10 GUITARRA, VIOLÃO, ETC 5 METROS- TIPO DE CABO E ADAPTADOR P10 / P10 MONO – REVESTIDO EXTERNO COM CAPA DE NYLON - DIÂMETRO DO CABO 30 MM - TAMANHO AWG 22 – CONECTOR P10 MACHO NAS PONTAS – 5 METROS",
+        "quantidade": 11,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 11,
+        "objeto": "CABOS MICROFONE/DMX - XLR/CANON BALANCEADO 5 METROS- BLINDAGEM: FITA DE ALUMÍNIO, BLINDAGEM 2: COBRE TRANÇADO, MATERIAL: PVC, BITOLA MM2: 0,20MM,2 BITOLA AWG: 24 AWG, TIPO DE PLUG (R): XLR FÊMEA MATERIAL DO PLUG (R): ZAMAC, XLR MACHO MATERIAL DO PLUG (R): ZAMAC. 5 METROS",
+        "quantidade": 13,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 12,
+        "objeto": "CAIXA ATIVA 10 POLEGADAS- APLICAÇÃO: PARA USO EM PALESTRAS, CONVENÇÕES E SISTEMA DE SONORIZAÇÃO DE PEQUENO PORTE; - SISTEMA: CAIXA TRAPEZOIDAL DE 2 VIAS AMPLIFICADAS; - AMPLIFICADOR: 120 W/RMS (4 OHMS) E 80 W/RMS (8 OHMS) COM DCO, PROTEÇÃO DC E AUTO RAMPA; - RESPOSTA DE FREQUÊNCIA: 60 HZ A 18 KHZ; - ENTRADAS: 2 CANAIS INDEPENDENTES COM FILTRO SUBSONIC EM 40 HZ (12DB/OITAVA); ALIMENTAÇÃO: AUTOMÁTICA 120/230 V (50/60 HZ) COM ACIONAMENTO SOFT START; - FALANTES: 1X 10\", 1 DRIVE DE FAIXA ESTENDIDA. (APRESENTAR AMOSTRA)",
+        "quantidade": 8,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 13,
+        "objeto": "CAIXA ATIVA BI-AMPLIFICADA 15\" 2-VIAS 300WRMS 100V/240V- ALTO-FALANTE DE 15\", DRIVER DE TITÂNIO 1 1/4\", BI-AMPLIFICADA, 300 W RMS, ENTRADAS BALANCEADAS XLR E TRS 1/4\", ENTRADAS P2 E RCA, AUTO VOLTAGE (100~240VAC), ANGULAÇÃO PARA USO COMO MONITOR (L/R), 03 PONTOS PARA MONTAGEM \"FLY\", ENCAIXE PARA PEDESTAL COM TRAVA, PESO: 19KG. COMUNICAÇÃO BLUETOOTH, CONTROLE REMOTO FRONTAL, 05 PRESETS DE EQUALIZAÇÃO (APRESENTAR AMOSTRA)",
+        "quantidade": 3,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 14,
+        "objeto": "CAIXA DE SOM PROFISSIONAL 12' ATIVA- POTÊNCIA DE 1000 W - AMPLIFICADOR CLASSE D - MÁXIMO SPL: 126 DB - COBERTURA (NOMINAL -6 DB ): H 90° - COBERTURA (NOMINAL -6 DB ): V 60° - LF TRANSDUTOR: WOOFER DE 12' EVS-12K (30 CM) - HF TRANSDUTOR: DRIVER DE TITÂNIO DE 1,5' DH-1K - TIPO DE CONECTOR: 2 X XLR/P10 TRS COMBO JACK, 1 X P2 ENTRADA AUXILIAR (3,5 MM) E 1 X XLR LIGAÇÃO DE SAÍDA – BLUETOOTH - FAIXA DE FREQUÊNCIA: 50 HZ - 20 KHZ - DIMENSÕES: (LXAXP): 35,6 CM X 61 CM X 35,6 CM- PESO: 19KG (APRESENTAR AMOSTRA)",
+        "quantidade": 9,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 15,
+        "objeto": "CANHAO REFLETOR LED RGBW- POTÊNCIA TOTAL DE 162 WATTS - LEDS DE 3 WATTS CADA - 12 LEDS VERMELHOS - 15 LEDS VERDES - 15 LEDS AZUIS - 12 LEDS BRANCOS - FUNCIONA NO AUTOMÁTICO - FUNCIONA PELA BATIDA DA MÚSICA - FUNCIONA PELO DMX COM 7 CANAIS - FUNÇÃO STROBO - DISPLAY DIGITAL - CARCAÇA EM PLÁSTICO - COM COOLER DE REFRIGERAÇÃO - FUNÇÃO MASTER / SLAVE - FUNCIONA COM E SEM MESA DMX - ALIMENTAÇÃO 110V/220V AUTOMÁTICA",
+        "quantidade": 21,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 16,
+        "objeto": "CARREGADOR DE PILHAS AA- CARREGADOR DE PILHAS MODELO AA, CARREGA ATÉ 4 PILHAS AA OU AAA SIMULTANEAMENTE, E É COMPATÍVEL COM QUALQUER PILHA RECARREGÁVEL AA OU AAA. ACOMPANHA UM INDICADOR DE LED QUE INDICA A CARGA DAS PILHAS QUE SÃO CARREGADAS TOTALMENTE",
+        "quantidade": 23,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 17,
+        "objeto": "CARREGADOR PARA NOTEBOOK- VOLTAGEM DE ENTRADA: 110 - 220V (BIVOLT AUTOMÁTICO). VOLTAGEM DE SAÍDA: 20V. AMPERAGEM MÁXIMA: 3,25a. POTENCIA TOTAL",
+        "quantidade": 13,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 18,
+        "objeto": "CLARINETE EM SI BEMOL (APRESENTAR AMOSTRA)",
+        "quantidade": 2,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 19,
+        "objeto": "CONECTORES PLUG CANON P10, MACHO- CONECTOR LINHA P10 MONO - PLUG P10 REFORÇADO PARA UTILIZAÇÃO PROFISSIONAL. - ACABAMENTO: NIQUELADO E BRILHANTE. - PERMITE SOLDAGEM PERFEITA.",
+        "quantidade": 12,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 20,
+        "objeto": "CONECTORES PLUG CANON XLR, FÊMEA- CONECTOR LINHA XLR FÊMEA 3 POLOS - CONECTORES PLUG CANON XLR, FÊMEA- CONECTOR LINHA XLR FÊMEA 3 POLOS - PLUG XLR REFORÇADO PARA UTILIZAÇÃO PROFISSIONAL. - ACABAMENTO: NIQUELADO E BRILHANTE. - PERMITE SOLDAGEM PERFEITA",
+        "quantidade": 12,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 21,
+        "objeto": "CONECTORES PLUG CANON XLR, MACHO- CONECTOR LINHA XLR MACHO 3 POLOS - PLUG XLR REFORÇADO PARA UTILIZAÇÃO PROFISSIONAL. - ACABAMENTO: NIQUELADO E BRILHANTE. - PERMITE SOLDAGEM PERFEITA",
+        "quantidade": 12,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 22,
+        "objeto": "CORDAS CONTRA BAIXO 4 CORDAS 040-095 NÍQUEL- JOGO DE CORDAS DE COM REVESTIMENTO DE NÍQUEL PARA CONTRABAIXO ELÉTRICO DE 4 CORDAS. COR NORMAL NÍQUEL (PRATEADO), AS CORDAS NÃO SÃO COLORIDAS",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 23,
+        "objeto": "DIRECT BOX DUPLO PASSIVO- DIRECT BOX PASSIVO PROFISSIONAL, CONEXÃO PARA 1 OU 2 INSTRUMENTOS OU 1 INSTRUMENTO ESTÉREO, ATENUAÇÃO DE ENTRADA: SELECIONÁVEL (0DB, -20DB, -40DB), ENTRADA DE INSTRUMENTO: JACK TRS 1/4' DE 50K DESBALANCEADO, SAÍDA PARALELA (LINK): JACK TRS 1/4' DE 50K DESBALANCEADO, SAÍDA BALANCEADA: XLR 600 OHMS BALANCEADO, GROUND LIFT (ATERRAMENTO): SELECIONÁVEL, CONSTRUÇÃO: CHASSI ROBUSTO EM METAL",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 24,
+        "objeto": "ENCORDOAMENTO CORDAS VIOLÃO 0.10 AÇO LIGHT 85/15 BRONZE- ENCORDOAMENTO 0.10 PARA VIOLÃO AÇO 85/15 BRONZE LIGHT, COM TIMBRE QUENTE E BRILHO ENRIQUECIDO, A LINHA 85/15 TRAZ A MATÉRIA-PRIMA MAIS EQUILIBRADA (EM QUESTÃO DE DURABILIDADE, CONFORTO E SOM) DENTRE AS USADAS PARA INSTRUMENTOS ACÚSTICOS.",
+        "quantidade": 51,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 25,
+        "objeto": "KIT DE SUPORTE PAREDE CAIXA DE SOM ACÚSTICA- SUPORTE PARA CAIXA DE SOM COM 4 REGULAGENS DE INCLINAÇÃO VERTICAL (0o, 10o, 20o E 30o), PERMITE ROTAÇÃO DA CAIXA. - CAPACIDADE DE CARGA: 45KG. - ALTURA: 21,3CM. - LARGURA: 7,1CM. - COMPRIMENTO: 43CM - DISTÂNCIA ATÉ O APOIO: 36,5CM. - MATERIAL: AÇO. - AJUSTES: DE INCLINAÇÃO. - EM AÇO RESISTENTE COM EXCLUSIVO SISTEMA DE REGULAGEM DE INCLINAÇÃO",
+        "quantidade": 6,
+        "unidade_fornecimento": "PAR"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 26,
+        "objeto": "KIT TECLADO E MOUSE SEM FIO- KIT COMPOSTO POR TECLADO PADRÃO ABNT2 E MOUSE AMBIDESTRO. TECLADO DE MEMBRANA. MOUSE COM SENSOR ÓPTICO E RESOLUÇÃO DE 1000 DPI. PRODUTOS COM ALCANCE SEM FIO DE 10 M. INTERFACE DE CONEXÃO DOS DISPOSITIVOS USB.",
+        "quantidade": 8,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 27,
+        "objeto": "LÍQUIDO MAQUINA FUMACA 5 LITROS- LÍQUIDO PARA MÁQUINA DE FUMAÇA, SERVE EM TODOS OS APARELHOS! COM EXCELENTE QUALIDADE E DIVERSIDADES DE AROMAS. PRODUTO DE ALTÍSSIMA QUALIDADE, GALÃO DE 5 LITROS NEUTRO",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 28,
+        "objeto": "MESA CONTROLADORA DMX- MODELO: DMX512; - MATERIAL: METAL / ABS; - VOLTAGEM: AC 110V ~ 220V (BIVOLT); - FREQUÊNCIA: 50/60HZ; - 192 CANAIS DMX; - CONTROLA SIMULTANEAMENTE ATÉ 12 APARELHOS COM 16 CANAIS CADA; - MEMÓRIA PARA 30 PROGRAMAS COM 8 CENAS CADA (APRESENTAR AMOSTRA)",
+        "quantidade": 2,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 29,
+        "objeto": "MESA SOM PROFISSIONAL 5 CANAIS- TIPOS DE ALIMENTAÇÃO 5V1A - COM ALIMENTAÇÃO FANTASMA - COM EFEITOS - PRINCIPAIS EFEITOS INCLUÍDOS: DELAY, POWER PHANTON, REPEAT – CONECTORES MD9, P10, P2, RCA, USB, XRL - QUANTIDADE DE CANAIS: 5 – CONECTIVIDADE BLUETOOTH. (APRESENTAR AMOSTRA)",
+        "quantidade": 2,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 30,
+        "objeto": "MICROFONE DINÂMICO CARDIOIDE - MICROFONE VOCAL DINÂMICO - MODELO TM58 - CÁPSULA: DINÂMICA - PADRÃO POLAR: CARDIOIDE - RESPOSTA DE FREQUÊNCIA: 50 18.000HZ - SENSIBILIDADE: - -52DB / V (1,78MV / PA) A 1000HZ ± 2DB - IMPEDÂNCIA: - 500 OHMS - MAX SPL: - 155DB A 1000HZ - CONECTOR: - INTEGRAL DE 3 PINOS MACHO XLR - PESO: 0,32 KG (APRESENTAR AMOSTRA)",
+        "quantidade": 5,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 31,
+        "objeto": "MICROFONE HEDSET CABEÇA- MICROFONE HEADSET, ESPUMA ANTIRUIDO, 3 PINOS CONECTOR DA LIGAÇÃO MODELO MINI XLR, PROJETADO PARA USO NO PALCO, CASAS DE CULTO, PROFESSORES E OUTRAS APLICAÇÕES QUE EXIGEM MÍNIMA VISIBILIDADE MICROFONE COM OPERAÇÃO MÃOSLIVRES (APRESENTAR AMOSTRA)",
+        "quantidade": 4,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 32,
+        "objeto": "MICROFONE SEM FIO- MICROFONE DUPLO PROFISSIONAL DE MÃO, SEM FIO, MODULAÇÃO: UHF, PADRÃO POLAR: CARDIÓIDE SISTEMA PLL (PHASE LOCKED LOOP) ANTENA OMNIDIRECIONAL 1⁄4 COMPRIMENTO DE ONDA COM CONEXÃO FIXA DISPLAY OLED COM INDICAÇÃO DE NÍVEL DE AF, RF, CARGA DAS PILHAS, MUTE E LOCK AUTOMÁTICO RESPOSTA DE FREQUÊNCIA: 80HZ - 14.000HZ ± 2DB DUPLO MICROFONE DE MÃO (HANDHELD) SAÍDA DE ÁUDIO: XLR E TS POTÊNCIA DE SAÍDA: 10MW LARGURA DE BANDA: 50MHZ CONEXÃO ANTENAS: BNC 50 OHMS PILHA DE LÍTHIUM 3.7V RECARREGÁVEL NA PRÓPRIA BASE ATRAVÉS DE CABO MINI USB (APRESENTAR AMOSTRA)",
+        "quantidade": 7,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 33,
+        "objeto": "MICROFONE SEM FIO DUPLO AURICULAR LAPELA- IR – RECEPTOR DE INFRAVERMELHO PARA SINTONIZAÇÃO, FUNÇÃO SCAN – PRESSIONANDO E SEGURANDO O BOTÃO ACT. SINTONIZAÇÃO POR INFRAVERMELHO – TOQUE RÁPIDO NO BOTÃO ACT. MICROFONE SEM FIO DUPLO CONTENDO DOIS BODYPACKS COM MICROFONE LAPELA E AURICULAR, FAIXA DE FREQÜÊNCIA: A: 615 – 674,750 MHZ| B: 635 - 694,750 MHZ, LARGURA DE BANDA: 120MHZ, FAIXA MÁXIMA DE DESVIO: 50 KHZ, RESPOSTA DE ÁUDIO: 100HZ-10KHZ, FAIXA DINÂMICA: 105 DB, DISTÂNCIA DE ALCANCE APROXIMADA: 80-90M (ÁREA LIVRE), 50M (COM BARREIRAS). ALIMENTAÇÃO DO BODYPACK, DUAS PILHAS AA. 2 SAÍDAS XLR BALANCEADAS – SAÍDA INDEPENDENTE PARA CADA MICROFONE - NÃO OCORRE VAZAMENTO ENTRE OS CANAIS XLR E 1 SAÍDA P10 NÃO BALANCEADA – SAÍDA MIX OUT (APRESENTAR AMOSTRA)",
+        "quantidade": 7,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 34,
+        "objeto": "MOLDURA TOUCH SCREEN 60- MOLDURA COM TELA EM VIDRO TOUCH SCREEN,, ACOPLÁVEL EM TELEVISORES TELA PLANA DE 60', COM CONEXÃO VIA USB, CONTENDO 01X CABO USB/JST, CANETAS PLÁSTICAS, SOFTWARE DE UTILIZAÇÃO, KIT DE TRAVAS DE FIXAÇÃO E MANUAL DE UTILIZAÇÃO /INSTALAÇÃO. (UTILIZADO PARA CONVERTER TELEVISORES CONVENCIONAIS PARA TOUCH SCREEN (APRESENTAR AMOSTRA)",
+        "quantidade": 2,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 35,
+        "objeto": "MULTICABO MEDUSA 20 VIAS COM CONECTORES COMBO, 25 METROS- BANDEJA DE MATERIAL EM AÇO COM CONECTOR PAINEL COMBO(XLR / P10), BANDEJA COM TINTA ELETROSTÁTICA PRETO CABO MULTICANAL ESPAGUETADO 24 AWG, CONDUTORES EM COBRE SN (ESTANHADO) OFHC EXTRA- FLEXÍVEL, ISOLAÇÃO EM POLIETILENO. BLINDAGEM DO PAR EM FITA ALUMÍNIO + FIO DRENO SN (ESTANHADO). CAPA DO PAR EM PVC 70oC E ENFAIXAMENTO/SEPARADOR EM FITA NÃO HIGROSCÓPICA. CAPA EXTERNA EM PVC EMBORRACHADA 60oC. CABO PARA LIGAÇÕES E DISTRIBUIÇÃO DE MESAS DE SOM XLR. COR PRETO.",
+        "quantidade": 11,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 36,
+        "objeto": "NOTEBOOK I5-1235U WINDOWS 11 HOME 8GB 256GB- NOTEBOOK MODELO BOOK2 - NP550XED-KF2BR, PLACA GRÁFICA INTEL IRIS XE GRAPHICS, PROCESSADOR CORE I5-1235U, WINDOWS 11, 8 GB DE MEMÓRIA RAM DDR4, 256 GB DE ARMAZENAMENTO SSD, COM PORTA ETHERNET, PORTAS USB 1X USB 3.2, 1X USB 2.0, 2X USB-C, COM HDMI COM BLUETOOTH, COM SAÍDA PARA FONES DE OUVIDO, COM PORTA ETHERNET, TELA DE 15,6 POLEGADAS, TIPO DE RESOLUÇÃO DA TELA FULL HD 1920 X 1080 60HZ, TIPO DE TELA LED IPS. (APRESENTAR AMOSTRA)",
+        "quantidade": 18,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 37,
+        "objeto": "PEDESTAL MICROFONE ROSCA DE METAL- MODELO: PMV-100P - POSSUI HASTE TELESCÓPICA COM AJUSTE DE INCLINAÇÃO E DISTÂNCIA EM UMA SÓ OPERAÇÃO. - COR: PRETO - ACOMPANHA CACHIMBO. O PEDESTAL AINDA CONTA COM REGULAGEM DE ALTURA QUE PROPORCIONA CONFORTO PARA SEUS USUÁRIOS, POSSIBILITANDO O MESMO CRIAR DIVERSOS MODOS DE USO CONFORME A NECESSIDADE DE CADA OPERAÇÃO EM SEUS TRABALHOS",
+        "quantidade": 12,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 38,
+        "objeto": "PEDESTAL TRIPÉ DE CAIXA DE SOM- COR: PRETO - CAPACIDADE DE CARGA: 40 40 KG - MATERIAL: AÇO - COM REGULAGEM DE ALTURA E PINOS TRAVA DE METAL PARA SEGURANÇA - PÉS ANTIDERRAPANTES - ENCAIXE PARA CAIXA DE SOM COM 3,5CM. - PESO: 1,8KG APROXIMADAMENTE. - TAMANHO DESMONTADO PARA O TRANSPORTE: 89CM",
+        "quantidade": 7,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 39,
+        "objeto": "PILHA RECARREGAVEL AA- CONTENDO 4 UNIDADES POR PACK, VOLTAGEN DE 1,2 VOLTS, 2500 MILLIAMP HOURS, APLICÁVEL EM CONTROLES REMOTOS, MICROFONES SEM FIO, CONTROLES DE VIDEO GAME, MOUSE SEM FIO.",
+        "quantidade": 48,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 40,
+        "objeto": "PROJETOR POWERLITE E20- IMAGENS COLORIDAS: 3400 LÚMENS EM BRANCO E EM CORES - TECNOLOGIA 3LCD DE CORES ATÉ TRÊS VEZES MAIS BRILHANTES PARA PROJEÇÕES REMENTE NATURAIS. - RESOLUÇÃO NATIVA XGA E DESEMPENHO 4:3. - LÂMPADAS DURÁVEIS E DE BAIXO CUSTO: ATÉ 12.000 HORAS2 NO MODO ECONÔMICO. - CONECTIVIDADE HDMI: AÚDIO E VÍDEO DE QUALIDADE HD COM UM ÚNICO CABO. (APRESENTAR AMOSTRA)",
+        "quantidade": 10,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 41,
+        "objeto": "SET DE PRATOS BALANCE 10- LIGA DE BRONZE B10 COMPOSTOS DE UM HI-HAT DE 14 POLEGADAS, THIN OU MIDLE CRASH DE 14 POLEGADAS E RIDE DE 20\". (APRESENTAR AMOSTRA)",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 42,
+        "objeto": "SMART TV 60' UHD 4K- TELEVISOR 60', COM FUNCIONALIDADE SMART, TELA PLANA DE LED, RESOLUÇÃO 4K, 3840PX X 2160PX, COM HDR, CONEXÃO USB, HDMI, WI-FI, BLUETOOTH E INTERNET (APRESENTAR AMOSTRA)",
+        "quantidade": 2,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 43,
+        "objeto": "SUPORTE ESTANTE DE PARTITURA MUSICAL MAESTRO- ESTANTE DE PARTITURA ARTICULADA COM ALTURA AJUSTÁVEL ENTRE 70 CM E 136 CM. FEITO DE AÇO RESISTENTE PARA MAIOR DURABILIDADE. INCLUI BOLSA PARA TRANSPORTE FÁCIL E SEGURO",
+        "quantidade": 6,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 44,
+        "objeto": "TECLADO E MOUSE COM FIO USB- LAYOUT: PADRÃO COM TECLAS F DE TAMANHO NORMAL E TECLADO NUMÉRICO, TIPO DE CONEXÃO: USB, ABNT2, MOUSE: AMBIDESTRO, TIPO DE CONEXÃO: USB, SENSOR: ÓPTICO DE 1000 DPI.",
+        "quantidade": 81,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 45,
+        "objeto": "TELA ELÉTRICA TENSIONADA 4,06 X 3,04- TECIDO MATTE WHITE, COM VERSO PRETO • TECIDO HIGH CONTRAS, CINZA COM VERSO PRETO • TECIDO TRANSLUCIDO BRANCO LEITOSO, PROJEÇÃO DE TRAS PARA FRENTE • LARGURA 4,06 MTS X ALTURA 3,04 MTS • ESTOJO EM ALUMÍNIO, COM PERFIL FINO E ELEGANTE • PINTURA ELETROSTÁTICA NA CORES PRETA OU BRANCA • BORDAS PRETAS • MOTOR TUBULAR INTERNO EMTECO, VOLTAGEM 110V OU 220V • ACIONAMENTO MANUAL POR BOTOEIRA, CONTROLE REMOTO SEM FIO OU SENSOR DE CORRENTE • TENSIONAMENTO AJUSTÁVEL (APRESENTAR AMOSTRA)",
+        "quantidade": 4,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 46,
+        "objeto": "TROMPETES EM SI BEMOL (APRESENTAR AMOSTRA)",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      },
+      {
+        "lote": "Lote 1",
+        "item": 47,
+        "objeto": "TUBA- 3 PISTOS EM SI BEMOL (APRESENTAR AMOSTRA)",
+        "quantidade": 1,
+        "unidade_fornecimento": "UNID"
+      }
+    ]
+  }
+]
