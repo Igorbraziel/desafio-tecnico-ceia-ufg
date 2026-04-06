@@ -59,7 +59,7 @@ brew install antiword tesseract tesseract-lang poppler
 
 1. **Clone o repositório**:
     ```bash
-    git clone git@github.com:Igorbraziel/desafio-tecnico-ceia-ufg.git
+    git clone https://github.com/Igorbraziel/desafio-tecnico-ceia-ufg.git
     ```
 
 2. **Crie um ambiente virtual**:
