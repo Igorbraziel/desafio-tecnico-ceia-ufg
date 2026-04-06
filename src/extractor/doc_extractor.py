@@ -35,7 +35,7 @@ class DocExtractor:
             logger.error(f"Erro ao extrair texto do DOC (antiword falhou) '{file_path.name}': {e.stderr}")
             return ""
         except FileNotFoundError:
-            logger.error("Utilitário 'antiword' não está instalado no sistema. Não é possível ler o DOC.")
+            logger.warning("Utilitário 'antiword' não está instalado no sistema. Não é possível ler o DOC.")
             return ""
         except Exception as e:
             logger.error(f"Erro fatal ao processar o arquivo DOC '{file_path.name}': {e}")

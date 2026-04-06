@@ -62,8 +62,8 @@ class DocumentSelector:
         """Retorna documentos para processar, priorizando docs de alta relevância.
 
         Estratégia:
-        1. Se documentos prioritários forem encontrados → retorna APENAS esses
-        2. Se NENHUM prioritário for encontrado → retorna todos os não-ignorados
+        1. Se documentos prioritários forem encontrados → retorna apenas esses
+        2. Se nenhum prioritário for encontrado → retorna todos os não-ignorados
 
         Args:
             folder_path: Pasta com os anexos de uma licitação
